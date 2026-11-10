@@ -1,0 +1,2951 @@
+<!doctype html><html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <title>Davindra Kumara Bayanaka (Davin) | Personal Portfolio</title>
+
+    <style>
+      :root {
+        --bg-primary: #060814;
+        --bg-secondary: #0b1022;
+        --bg-surface: rgba(15, 23, 42, 0.68);
+        --bg-surface-hover: rgba(23, 33, 61, 0.86);
+        --accent-purple: #8b5cf6;
+        --accent-purple-glow: rgba(139, 92, 246, 0.38);
+        --accent-blue: #3b82f6;
+        --accent-blue-glow: rgba(59, 130, 246, 0.38);
+        --accent-cyan: #06b6d4;
+        --accent-cyan-glow: rgba(6, 182, 212, 0.32);
+        --text-main: #f8fafc;
+        --text-secondary: #94a3b8;
+        --text-muted: #64748b;
+        --border-glass: rgba(148, 163, 184, 0.16);
+        --border-glow: rgba(139, 92, 246, 0.5);
+        --gradient-main: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-blue) 55%, var(--accent-cyan) 100%);
+        --gradient-subtle: linear-gradient(135deg, rgba(139, 92, 246, 0.18) 0%, rgba(59, 130, 246, 0.14) 50%, rgba(6, 182, 212, 0.12) 100%);
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 86px;
+      }
+
+      body {
+        background-color: var(--bg-primary);
+        color: var(--text-main);
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        overflow-x: hidden;
+        line-height: 1.65;
+        position: relative;
+        transition: background-color 0.6s ease;
+      }
+
+      /* Interactive Animated Wallpaper Canvas & Layers */
+      #wallpaperCanvas {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -2;
+      }
+
+      .ambient-bg {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: -3;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 15% 15%, var(--accent-purple-glow), transparent 40%),
+          radial-gradient(circle at 85% 22%, var(--accent-blue-glow), transparent 38%),
+          radial-gradient(circle at 50% 80%, var(--accent-cyan-glow), transparent 44%),
+          linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-primary) 100%);
+        transition: background 0.6s ease;
+      }
+
+      .ambient-grid {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: -1;
+        background-image:
+          linear-gradient(to right, rgba(148, 163, 184, 0.045) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(148, 163, 184, 0.045) 1px, transparent 1px);
+        background-size: 48px 48px;
+        mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.78) 20%, transparent 82%);
+        -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.78) 20%, transparent 82%);
+      }
+
+      .orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(85px);
+        opacity: 0.42;
+        animation: floatOrb 14s ease-in-out infinite alternate;
+        transition: background 0.6s ease;
+      }
+
+      .orb-1 {
+        width: 380px;
+        height: 380px;
+        background: var(--accent-purple);
+        top: -80px;
+        left: -100px;
+      }
+
+      .orb-2 {
+        width: 340px;
+        height: 340px;
+        background: var(--accent-blue);
+        top: 28%;
+        right: -90px;
+        animation-delay: -5s;
+      }
+
+      .orb-3 {
+        width: 300px;
+        height: 300px;
+        background: var(--accent-cyan);
+        bottom: 8%;
+        left: 18%;
+        opacity: 0.28;
+        animation-delay: -9s;
+      }
+
+      @keyframes floatOrb {
+        0% {
+          transform: translate(0, 0) scale(1);
+        }
+        100% {
+          transform: translate(32px, -28px) scale(1.1);
+        }
+      }
+
+      /* Navigation */
+      .navbar-glass {
+        background: rgba(6, 8, 20, 0.8);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border-bottom: 1px solid var(--border-glass);
+        transition: all 0.3s ease;
+        padding-top: 0.85rem;
+        padding-bottom: 0.85rem;
+      }
+
+      .navbar-glass.scrolled {
+        padding-top: 0.6rem;
+        padding-bottom: 0.6rem;
+        background: rgba(6, 8, 20, 0.93);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      }
+
+      .navbar-brand {
+        font-weight: 800;
+        letter-spacing: 0.4px;
+        font-size: 1.18rem;
+        color: var(--text-main) !important;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+
+      .brand-badge {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        background: var(--gradient-main);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 0.92rem;
+        color: #fff;
+        box-shadow: 0 0 18px var(--accent-purple-glow);
+      }
+
+      .nav-link {
+        color: var(--text-secondary) !important;
+        font-weight: 500;
+        font-size: 0.92rem;
+        padding: 0.48rem 0.82rem !important;
+        border-radius: 8px;
+        transition: color 0.25s ease, background-color 0.25s ease;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--text-main) !important;
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      /* Wallpaper & Color Customizer Dock */
+      .wallpaper-studio-bar {
+        background: rgba(11, 16, 34, 0.82);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid var(--border-glass);
+        border-radius: 16px;
+        padding: 0.75rem 1.1rem;
+        margin-bottom: 1.75rem;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.38);
+      }
+
+      .wallpaper-swatch {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.38rem 0.8rem;
+        border-radius: 999px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        background: rgba(15, 23, 42, 0.75);
+        border: 1px solid var(--border-glass);
+        cursor: pointer;
+        transition: all 0.25s ease;
+      }
+
+      .wallpaper-swatch:hover {
+        color: var(--text-main);
+        transform: translateY(-2px);
+        border-color: var(--accent-cyan);
+      }
+
+      .wallpaper-swatch.active {
+        color: #ffffff;
+        background: rgba(255, 255, 255, 0.12);
+        border-color: var(--accent-cyan);
+        box-shadow: 0 0 16px var(--accent-purple-glow);
+      }
+
+      .swatch-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        display: inline-block;
+        flex-shrink: 0;
+      }
+
+      /* Section Styling */
+      section {
+        padding: 5.25rem 0;
+        position: relative;
+      }
+
+      .section-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.38rem 0.9rem;
+        border-radius: 999px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.4px;
+        color: var(--accent-cyan);
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid var(--border-glow);
+        margin-bottom: 1rem;
+      }
+
+      .section-title {
+        font-size: clamp(1.85rem, 3.2vw, 2.6rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin-bottom: 0.85rem;
+      }
+
+      .section-subtitle {
+        color: var(--text-secondary);
+        max-width: 640px;
+        font-size: 1.02rem;
+      }
+
+      .text-gradient {
+        background: var(--gradient-main);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      /* Glassmorphism Cards */
+      .glass-card {
+        background: var(--bg-surface);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid var(--border-glass);
+        border-radius: 18px;
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                    border-color 0.3s ease,
+                    box-shadow 0.3s ease,
+                    background-color 0.3s ease;
+      }
+
+      .glass-card:hover {
+        transform: translateY(-6px);
+        border-color: var(--border-glow);
+        background: var(--bg-surface-hover);
+        box-shadow: 0 18px 38px -12px rgba(0, 0, 0, 0.65),
+                    0 0 26px -4px var(--accent-purple-glow);
+      }
+
+      /* Buttons */
+      .btn-glow {
+        background: var(--gradient-main);
+        color: #ffffff;
+        border: none;
+        border-radius: 12px;
+        padding: 0.78rem 1.6rem;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+        box-shadow: 0 8px 24px -4px var(--accent-purple-glow);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+      }
+
+      .btn-glow:hover,
+      .btn-glow:focus {
+        color: #ffffff;
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px -2px var(--accent-blue-glow);
+        filter: brightness(1.08);
+      }
+
+      .btn-outline-glass {
+        background: rgba(15, 23, 42, 0.65);
+        color: var(--text-main);
+        border: 1px solid rgba(148, 163, 184, 0.3);
+        border-radius: 12px;
+        padding: 0.78rem 1.6rem;
+        font-weight: 600;
+        transition: all 0.25s ease;
+      }
+
+      .btn-outline-glass:hover,
+      .btn-outline-glass:focus {
+        color: #ffffff;
+        border-color: var(--accent-cyan);
+        background: rgba(255, 255, 255, 0.08);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 22px -6px var(--accent-cyan-glow);
+      }
+
+      /* Hero Section */
+      .hero-section {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding-top: 7.2rem;
+        padding-bottom: 4rem;
+      }
+
+      .status-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.45rem 1rem;
+        border-radius: 999px;
+        background: rgba(15, 23, 42, 0.82);
+        border: 1px solid var(--border-glow);
+        color: #e2e8f0;
+        font-size: 0.84rem;
+        font-weight: 500;
+        margin-bottom: 1.25rem;
+        box-shadow: 0 0 20px var(--accent-cyan-glow);
+      }
+
+      .status-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background-color: var(--accent-cyan);
+        box-shadow: 0 0 10px var(--accent-cyan);
+        animation: pulseDot 2s infinite;
+      }
+
+      @keyframes pulseDot {
+        0%, 100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.35);
+          opacity: 0.65;
+        }
+      }
+
+      .hero-greeting {
+        font-size: 0.92rem;
+        font-weight: 700;
+        letter-spacing: 2.4px;
+        color: var(--accent-cyan);
+        text-transform: uppercase;
+        margin-bottom: 0.45rem;
+      }
+
+      .hero-title {
+        font-size: clamp(2.2rem, 4.6vw, 3.85rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+        margin-bottom: 0.65rem;
+      }
+
+      .hero-tagline {
+        font-size: clamp(1.15rem, 2.1vw, 1.55rem);
+        font-weight: 700;
+        color: #e2e8f0;
+        margin-bottom: 1.15rem;
+      }
+
+      .hero-desc {
+        color: var(--text-secondary);
+        font-size: 1.04rem;
+        max-width: 560px;
+        margin-bottom: 1.85rem;
+      }
+
+      /* Avatar Showcase Frame */
+      .avatar-wrapper {
+        position: relative;
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
+      .avatar-card {
+        position: relative;
+        padding: 1.5rem;
+        border-radius: 24px;
+        background: linear-gradient(160deg, rgba(15, 23, 42, 0.88) 0%, rgba(11, 16, 34, 0.94) 100%);
+        border: 1px solid var(--border-glow);
+        box-shadow: 0 24px 50px rgba(0, 0, 0, 0.65),
+                    0 0 40px var(--accent-purple-glow);
+        overflow: hidden;
+      }
+
+      .avatar-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--gradient-main);
+      }
+
+      .avatar-media-box {
+        border-radius: 18px;
+        overflow: hidden;
+        background: radial-gradient(circle at 50% 35%, var(--accent-purple-glow), rgba(6, 8, 20, 0.95));
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        position: relative;
+        aspect-ratio: 1 / 0.94;
+      }
+
+      .avatar-photo-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.45s ease;
+      }
+
+      .avatar-card:hover .avatar-photo-img {
+        transform: scale(1.03);
+      }
+
+      .hud-corner-badge {
+        position: absolute;
+        bottom: 12px;
+        right: 12px;
+        background: rgba(6, 8, 20, 0.88);
+        border: 1px solid var(--border-glow);
+        color: var(--accent-cyan);
+        font-size: 0.74rem;
+        font-weight: 600;
+        padding: 0.3rem 0.7rem;
+        border-radius: 8px;
+        backdrop-filter: blur(8px);
+      }
+
+      /* About Section */
+      .interest-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.48rem 0.95rem;
+        border-radius: 12px;
+        background: rgba(15, 23, 42, 0.78);
+        border: 1px solid var(--border-glass);
+        color: #e2e8f0;
+        font-size: 0.88rem;
+        font-weight: 500;
+        transition: all 0.25s ease;
+      }
+
+      .interest-pill:hover {
+        border-color: var(--accent-cyan);
+        background: rgba(255, 255, 255, 0.08);
+        transform: translateY(-2px);
+      }
+
+      .info-list-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.8rem 0;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+      }
+
+      .info-list-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .fun-fact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.85rem;
+        padding: 0.9rem 1rem;
+        border-radius: 14px;
+        background: rgba(15, 23, 42, 0.52);
+        border: 1px solid rgba(148, 163, 184, 0.12);
+      }
+
+      .fun-fact-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        background: var(--gradient-subtle);
+        border: 1px solid var(--border-glow);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent-cyan);
+        flex-shrink: 0;
+      }
+
+      /* Skills Section */
+      .skill-icon-box {
+        width: 48px;
+        height: 48px;
+        border-radius: 13px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        background: var(--gradient-subtle);
+        border: 1px solid var(--border-glow);
+        color: var(--accent-cyan);
+      }
+
+      .skill-stage-badge {
+        font-size: 0.73rem;
+        font-weight: 600;
+        padding: 0.25rem 0.65rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.07);
+        color: #cbd5e1;
+        border: 1px solid var(--border-glass);
+      }
+
+      .progress-custom {
+        height: 8px;
+        background-color: rgba(148, 163, 184, 0.14);
+        border-radius: 999px;
+        overflow: hidden;
+      }
+
+      .progress-bar-custom {
+        height: 100%;
+        border-radius: 999px;
+        background: var(--gradient-main);
+        box-shadow: 0 0 12px var(--accent-blue-glow);
+        transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      /* Projects & Achievements Section */
+      .project-card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .project-thumb {
+        position: relative;
+        height: 195px;
+        background: #080c1c;
+        border-bottom: 1px solid var(--border-glass);
+        overflow: hidden;
+      }
+
+      .project-thumb svg {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.45s ease;
+      }
+
+      .project-card:hover .project-thumb svg {
+        transform: scale(1.05);
+      }
+
+      .project-category-badge {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        padding: 0.28rem 0.7rem;
+        border-radius: 999px;
+        background: rgba(6, 8, 20, 0.85);
+        color: var(--accent-cyan);
+        border: 1px solid var(--border-glow);
+        backdrop-filter: blur(6px);
+      }
+
+      .tech-tag {
+        font-size: 0.74rem;
+        font-weight: 600;
+        padding: 0.26rem 0.68rem;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.06);
+        color: #cbd5e1;
+        border: 1px solid var(--border-glass);
+      }
+
+      /* Mini Arcade Game Box */
+      .arcade-canvas-wrap {
+        position: relative;
+        background: rgba(4, 6, 16, 0.9);
+        border: 1px solid var(--border-glow);
+        border-radius: 16px;
+        overflow: hidden;
+      }
+
+      #miniGameCanvas {
+        width: 100%;
+        height: 260px;
+        display: block;
+        cursor: pointer;
+      }
+
+      /* Hobbies Section */
+      .hobby-card {
+        text-align: center;
+        padding: 1.8rem 1.3rem;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hobby-icon-wrap {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 1.1rem;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        background: var(--gradient-subtle);
+        border: 1px solid var(--border-glow);
+        color: var(--accent-cyan);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      }
+
+      .hobby-card:hover .hobby-icon-wrap {
+        transform: translateY(-4px) scale(1.07);
+        background: var(--gradient-main);
+        color: #ffffff;
+        box-shadow: 0 10px 24px var(--accent-blue-glow);
+      }
+
+      /* Goals Timeline / Card Layout */
+      .goal-card {
+        position: relative;
+        padding: 1.6rem;
+        height: 100%;
+      }
+
+      .goal-step-num {
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--accent-cyan);
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid var(--border-glow);
+        padding: 0.25rem 0.7rem;
+        border-radius: 999px;
+      }
+
+      .goal-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.07);
+        color: var(--accent-cyan);
+        font-size: 1.2rem;
+      }
+
+      /* Quote Section */
+      .quote-box {
+        position: relative;
+        padding: 3.5rem 2rem;
+        border-radius: 24px;
+        background: linear-gradient(135deg, rgba(139, 92, 246, 0.16) 0%, rgba(15, 23, 42, 0.9) 50%, rgba(6, 182, 212, 0.16) 100%);
+        border: 1px solid var(--border-glow);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+        overflow: hidden;
+      }
+
+      .quote-text {
+        font-size: clamp(1.35rem, 2.6vw, 2.05rem);
+        font-weight: 700;
+        line-height: 1.42;
+        letter-spacing: -0.01em;
+        max-width: 780px;
+        margin: 0 auto;
+      }
+
+      /* Contact Section */
+      .contact-channel-card {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.05rem 1.2rem;
+        border-radius: 16px;
+        background: rgba(15, 23, 42, 0.68);
+        border: 1px solid var(--border-glass);
+        transition: all 0.25s ease;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .contact-channel-card:hover {
+        border-color: var(--accent-cyan);
+        background: rgba(23, 33, 61, 0.85);
+        transform: translateX(4px);
+        color: inherit;
+      }
+
+      .channel-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: var(--gradient-subtle);
+        border: 1px solid var(--border-glow);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        color: var(--accent-cyan);
+        flex-shrink: 0;
+      }
+
+      .form-control-dark {
+        background-color: rgba(6, 8, 20, 0.78);
+        border: 1px solid rgba(148, 163, 184, 0.24);
+        color: var(--text-main);
+        border-radius: 12px;
+        padding: 0.8rem 1rem;
+        transition: border-color 0.25s ease, box-shadow 0.25s ease;
+      }
+
+      .form-control-dark:focus {
+        background-color: rgba(6, 8, 20, 0.94);
+        border-color: var(--accent-cyan);
+        color: var(--text-main);
+        box-shadow: 0 0 0 0.22rem var(--accent-cyan-glow);
+      }
+
+      .form-control-dark::placeholder {
+        color: var(--text-muted);
+      }
+
+      /* Footer */
+      .site-footer {
+        background: rgba(4, 6, 15, 0.94);
+        border-top: 1px solid var(--border-glass);
+        padding: 3.5rem 0 2rem;
+      }
+
+      .social-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(15, 23, 42, 0.82);
+        border: 1px solid var(--border-glass);
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: all 0.25s ease;
+      }
+
+      .social-btn:hover {
+        color: #ffffff;
+        border-color: var(--accent-cyan);
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-3px);
+      }
+
+      /* Scroll Reveal Animation */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Modal Dark Custom */
+      .modal-content-dark {
+        background: #0b1022;
+        border: 1px solid var(--border-glow);
+        border-radius: 20px;
+        color: var(--text-main);
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.78);
+      }
+
+      @media (max-width: 991.98px) {
+        .hero-section {
+          padding-top: 6.5rem;
+          text-align: center;
+        }
+        .hero-desc {
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .hero-actions {
+          justify-content: center;
+        }
+      }
+    
+      /* Top Scroll Progress Indicator */
+      #scrollProgressBar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        width: 0%;
+        background: var(--gradient-main);
+        box-shadow: 0 0 14px var(--accent-cyan);
+        z-index: 2000;
+        transition: width 0.08s linear;
+      }
+
+      /* Interactive Card Mouse Spotlight */
+      .glass-card {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .glass-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(
+          420px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+          rgba(255, 255, 255, 0.07),
+          transparent 45%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .glass-card:hover::after {
+        opacity: 1;
+      }
+
+      /* Typewriter Cursor */
+      .typewriter-cursor {
+        display: inline-block;
+        width: 2px;
+        height: 1.1em;
+        background-color: var(--accent-cyan);
+        margin-left: 4px;
+        vertical-align: middle;
+        animation: blinkCursor 0.85s infinite;
+      }
+
+      @keyframes blinkCursor {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+
+      /* Explorer XP Bar */
+      .xp-bar-track {
+        height: 7px;
+        border-radius: 999px;
+        background: rgba(148, 163, 184, 0.16);
+        overflow: hidden;
+      }
+
+      .xp-bar-fill {
+        height: 100%;
+        width: 25%;
+        background: var(--gradient-main);
+        box-shadow: 0 0 12px var(--accent-cyan);
+        transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      /* Neon Sketchpad Canvas */
+      #sketchCanvas {
+        width: 100%;
+        height: 240px;
+        display: block;
+        cursor: crosshair;
+        touch-action: none;
+      }
+
+      .color-dot-btn {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.25);
+        cursor: pointer;
+        transition: transform 0.2s ease, border-color 0.2s ease;
+      }
+
+      .color-dot-btn.active,
+      .color-dot-btn:hover {
+        transform: scale(1.18);
+        border-color: #ffffff;
+      }
+
+      /* Floating Quick-Action Dock */
+      .floating-dock {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1040;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .dock-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        background: rgba(11, 16, 34, 0.88);
+        backdrop-filter: blur(12px);
+        border: 1px solid var(--border-glow);
+        color: var(--text-main);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+        transition: all 0.25s ease;
+      }
+
+      .dock-btn:hover {
+        background: var(--gradient-main);
+        color: #ffffff;
+        transform: translateY(-3px) scale(1.05);
+      }
+
+    </style>
+  </head>
+  <body data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="100" tabindex="0">
+    <div id="scrollProgressBar" aria-hidden="true"></div>
+
+    <!-- Interactive Animated Background Canvas & Gradient Orbs -->
+    <div class="ambient-bg" aria-hidden="true">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+    <canvas id="wallpaperCanvas" aria-hidden="true"></canvas>
+    <div class="ambient-grid" aria-hidden="true"></div>
+
+    <!-- Responsive Navigation Bar -->
+    <nav id="mainNav" class="navbar navbar-expand-lg navbar-dark fixed-top navbar-glass">
+      <div class="container">
+        <a class="navbar-brand" href="#hero">
+          <span class="brand-badge">DK</span>
+          <span>DAVIN</span>
+        </a>
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-lg-1">
+            <li class="nav-item"><a class="nav-link active" href="#hero">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+            <li class="nav-item"><a class="nav-link" href="#projects">Achievements</a></li>
+            <li class="nav-item"><a class="nav-link" href="#arcade">Mini Game</a></li>
+            <li class="nav-item"><a class="nav-link" href="#hobbies">Hobbies</a></li>
+            <li class="nav-item"><a class="nav-link" href="#goals">Goals</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+              <a class="btn btn-glow btn-sm px-3 py-2" href="https://reons12.netlify.app" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-controller me-1"></i>My AI Game Site
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 2. HERO SECTION -->
+    <section id="hero" class="hero-section">
+      <div class="container">
+        <!-- Color-Changing Live Wallpaper Selector Bar -->
+        <div class="wallpaper-studio-bar reveal active">
+          <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+            <div class="d-flex align-items-center gap-2">
+              <i class="bi bi-palette2 text-info"></i>
+              <span class="small fw-bold text-uppercase" style="letter-spacing: 1px;">Live Color-Changing Wallpaper:</span>
+            </div>
+            <div class="d-flex flex-wrap align-items-center gap-2" id="wallpaperSelector">
+              <button type="button" class="wallpaper-swatch active" data-theme="nebula">
+                <span class="swatch-dot" style="background: linear-gradient(135deg, #8b5cf6, #06b6d4);"></span>
+                Nebula Cyber
+              </button>
+              <button type="button" class="wallpaper-swatch" data-theme="emerald">
+                <span class="swatch-dot" style="background: linear-gradient(135deg, #10b981, #06b6d4);"></span>
+                Emerald Matrix
+              </button>
+              <button type="button" class="wallpaper-swatch" data-theme="crimson">
+                <span class="swatch-dot" style="background: linear-gradient(135deg, #f43f5e, #f59e0b);"></span>
+                Crimson Blaze
+              </button>
+              <button type="button" class="wallpaper-swatch" data-theme="synthwave">
+                <span class="swatch-dot" style="background: linear-gradient(135deg, #ec4899, #8b5cf6);"></span>
+                Solar Synthwave
+              </button>
+              <button type="button" class="wallpaper-swatch" data-theme="ocean">
+                <span class="swatch-dot" style="background: linear-gradient(135deg, #2563eb, #2dd4bf);"></span>
+                Aurora Wave
+              </button>
+              <button type="button" class="wallpaper-swatch" data-theme="gold">
+                <span class="swatch-dot" style="background: linear-gradient(135deg, #f59e0b, #eab308);"></span>
+                Championship Gold
+              </button>
+              <button type="button" class="wallpaper-swatch" data-theme="rgb">
+                <span class="swatch-dot" style="background: conic-gradient(#ff0055, #ffdd00, #00ff88, #00bbff, #9933ff, #ff0055);"></span>
+                RGB Auto-Cycle
+              </button>
+              <button type="button" class="wallpaper-swatch" id="wallpaperStyleBtn" title="Switch background animation style">
+                <i class="bi bi-stars text-info"></i>
+                <span id="wallpaperStyleLabel">Mode: Constellation</span>
+              </button>
+              <label class="wallpaper-swatch mb-0" for="customAccentPicker" title="Pick any custom accent color">
+                <input type="color" id="customAccentPicker" value="#8b5cf6" class="border-0 p-0 bg-transparent" style="width: 16px; height: 16px; cursor: pointer;">
+                <span>Custom Color</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row align-items-center gy-5">
+          <div class="col-lg-7 reveal active">
+            <div class="status-pill">
+              <span class="status-dot"></span>
+              <span>Currently Learning, Coding &amp; Creating Games</span>
+            </div>
+            <p class="hero-greeting">HELLO, I'M DAVIN</p>
+            <h1 class="hero-title">
+              <span class="text-gradient">Davindra Kumara Bayanaka</span>
+            </h1>
+            <h2 class="hero-tagline mb-2">Play Creative, Think Different.</h2>
+            <div class="mb-3 d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass);">
+              <i class="bi bi-terminal text-info small"></i>
+              <span id="typewriterText" class="small fw-semibold text-info">Aspiring Game Creator</span><span class="typewriter-cursor"></span>
+            </div>
+            <p class="hero-desc">
+              Hi, I'm <strong>Davin</strong>! I like to learn new stuff about coding, trying new games, and discovering new technology. I'm always looking forward to improving my experience and building my own games and creative web projects.
+            </p>
+            <div class="d-flex flex-wrap gap-3 hero-actions">
+              <a href="#projects" class="btn btn-glow">
+                <i class="bi bi-trophy me-2"></i>Explore My Work
+              </a>
+              <a href="#arcade" class="btn btn-outline-glass">
+                <i class="bi bi-joystick me-2"></i>Play Mini Game
+              </a>
+              <a href="#contact" class="btn btn-outline-glass">
+                <i class="bi bi-chat-dots me-2"></i>Contact Me
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-5 reveal active">
+            <div class="avatar-wrapper">
+              <div class="avatar-card">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <span class="badge rounded-pill px-3 py-2" style="background: rgba(255,255,255,0.08); color: var(--accent-cyan); border:1px solid var(--border-glow);">
+                    <i class="bi bi-person-check me-1"></i>DAVIN // CREATOR
+                  </span>
+                  <button type="button" id="toggleAvatarViewBtn" class="btn btn-sm btn-outline-glass py-1 px-2 small">
+                    <i class="bi bi-arrow-repeat me-1"></i>Switch View
+                  </button>
+                </div>
+
+                <!-- Davin's Real Photo + Switchable Cyber Avatar SVG -->
+                <div class="avatar-media-box">
+                  <img id="davinRealPhoto" src="data:image/jpeg;base64,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" alt="Davindra Kumara Bayanaka (Davin)" class="avatar-photo-img">
+
+                  <svg id="davinCyberAvatar" class="d-none" viewBox="0 0 400 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Developer Avatar Illustration">
+                    <defs>
+                      <linearGradient id="avatarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#8b5cf6"/>
+                        <stop offset="55%" stop-color="#3b82f6"/>
+                        <stop offset="100%" stop-color="#06b6d4"/>
+                      </linearGradient>
+                      <linearGradient id="visorGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#22d3ee"/>
+                        <stop offset="100%" stop-color="#8b5cf6"/>
+                      </linearGradient>
+                    </defs>
+                    <circle cx="200" cy="185" r="128" fill="none" stroke="rgba(139,92,246,0.28)" stroke-width="1.5" stroke-dasharray="8 6"/>
+                    <circle cx="200" cy="185" r="102" fill="none" stroke="rgba(6,182,212,0.25)" stroke-width="1.5"/>
+                    <path d="M85 370 C85 285 130 255 200 255 C270 255 315 285 315 370 Z" fill="url(#avatarGrad)" opacity="0.88"/>
+                    <path d="M120 370 L155 275 L200 305 L245 275 L280 370 Z" fill="#0b1022" opacity="0.75"/>
+                    <rect x="132" y="130" width="18" height="58" rx="9" fill="#3b82f6"/>
+                    <rect x="250" y="130" width="18" height="58" rx="9" fill="#06b6d4"/>
+                    <path d="M140 140 A62 62 0 0 1 260 140" fill="none" stroke="url(#avatarGrad)" stroke-width="10" stroke-linecap="round"/>
+                    <circle cx="200" cy="165" r="54" fill="#1e293b" stroke="rgba(148,163,184,0.35)" stroke-width="2"/>
+                    <rect x="160" y="148" width="80" height="24" rx="12" fill="url(#visorGrad)"/>
+                    <line x1="172" y1="160" x2="192" y2="160" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="208" y1="160" x2="228" y2="160" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+                    <g fill="#67e8f9" font-family="monospace" font-size="13" font-weight="bold">
+                      <text x="45" y="95">&lt;DAVIN/&gt;</text>
+                      <text x="285" y="105">{ GAME }</text>
+                      <text x="48" y="265">★ HOOPS</text>
+                    </g>
+                  </svg>
+                  <div class="hud-corner-badge">
+                    <i class="bi bi-controller me-1"></i>Play Creative
+                  </div>
+                </div>
+
+                <!-- Interactive Visitor XP Progress Bar -->
+                <div class="mt-3 p-2 px-3 rounded-3" style="background: rgba(6,8,20,0.75); border: 1px solid var(--border-glass);">
+                  <div class="d-flex justify-content-between align-items-center small mb-1">
+                    <span class="text-secondary"><i class="bi bi-lightning-charge-fill text-warning me-1"></i><span id="visitorLevelLabel">LVL 1 // Portfolio Explorer</span></span>
+                    <span id="visitorXpValue" class="fw-bold text-info">25 / 100 XP</span>
+                  </div>
+                  <div class="xp-bar-track">
+                    <div id="visitorXpBar" class="xp-bar-fill"></div>
+                  </div>
+                </div>
+
+                <div class="row g-2 mt-2 text-center">
+                  <div class="col-4">
+                    <div class="p-2 rounded-3" style="background: rgba(15,23,42,0.78); border:1px solid var(--border-glass);">
+                      <div class="small text-secondary">Passions</div>
+                      <div class="fw-bold small text-light">Games &amp; Code</div>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="p-2 rounded-3" style="background: rgba(15,23,42,0.78); border:1px solid var(--border-glass);">
+                      <div class="small text-secondary">Sport</div>
+                      <div class="fw-bold small text-light">Basketball</div>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="p-2 rounded-3" style="background: rgba(15,23,42,0.78); border:1px solid var(--border-glass);">
+                      <div class="small text-secondary">Languages</div>
+                      <div class="fw-bold small text-info">ID / EN</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. ABOUT ME SECTION -->
+    <section id="about">
+      <div class="container">
+        <div class="text-center mb-5 reveal">
+          <span class="section-tag"><i class="bi bi-person-badge"></i> About Me</span>
+          <h2 class="section-title">Play Creative, <span class="text-gradient">Think Different</span></h2>
+          <p class="section-subtitle mx-auto">
+            Get to know who I am, what excites me, and the fun facts that shape my everyday life.
+          </p>
+        </div>
+
+        <div class="row g-4 align-items-stretch">
+          <!-- Left Column: Bio, Interests & Fun Facts -->
+          <div class="col-lg-7 reveal">
+            <div class="glass-card p-4 p-md-5 h-100">
+              <h3 class="h4 fw-bold mb-3">Hi, I'm <span class="text-gradient">Davindra Kumara Bayanaka (Davin)</span></h3>
+              <p class="text-secondary mb-3">
+                I'm interested in <strong>playing games, creating games, and playing basketball</strong>. I'm always excited to try new things—whether that's jumping into new games, discovering new technology, or learning new coding and drawing skills.
+              </p>
+              <p class="text-secondary mb-4">
+                When I'm not experimenting with HTML or game ideas, I also really enjoy listening to music and watching basketball and soccer videos.
+              </p>
+
+              <h4 class="h6 text-uppercase fw-bold text-info mb-3">My Core Interests</h4>
+              <div class="d-flex flex-wrap gap-2 mb-4">
+                <span class="interest-pill"><i class="bi bi-controller text-info"></i> Playing &amp; Creating Games</span>
+                <span class="interest-pill"><i class="bi bi-dribbble text-warning"></i> Playing Basketball</span>
+                <span class="interest-pill"><i class="bi bi-code-slash text-info"></i> Learning Coding &amp; HTML</span>
+                <span class="interest-pill"><i class="bi bi-cpu text-primary"></i> Discovering New Technology</span>
+                <span class="interest-pill"><i class="bi bi-play-btn text-danger"></i> Basketball &amp; Soccer Videos</span>
+                <span class="interest-pill"><i class="bi bi-music-note-beamed text-info"></i> Listening to Music</span>
+              </div>
+
+              <h4 class="h6 text-uppercase fw-bold text-info mb-3">Fun Facts About Me</h4>
+              <div class="row g-3">
+                <div class="col-sm-6">
+                  <div class="fun-fact-item">
+                    <div class="fun-fact-icon"><i class="bi bi-joystick"></i></div>
+                    <div>
+                      <div class="fw-semibold small text-light">Video Game Enthusiast</div>
+                      <div class="text-secondary small">I enjoy playing video games and studying what makes them fun.</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="fun-fact-item">
+                    <div class="fun-fact-icon"><i class="bi bi-cpu-fill"></i></div>
+                    <div>
+                      <div class="fw-semibold small text-light">Tech Explorer</div>
+                      <div class="text-secondary small">I like discovering new technology, AI tools, and creative software.</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="fun-fact-item">
+                    <div class="fun-fact-icon"><i class="bi bi-headphones"></i></div>
+                    <div>
+                      <div class="fw-semibold small text-light">Music Lover</div>
+                      <div class="text-secondary small">I enjoy listening to music while relaxing, gaming, or learning.</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="fun-fact-item">
+                    <div class="fun-fact-icon"><i class="bi bi-trophy"></i></div>
+                    <div>
+                      <div class="fw-semibold small text-light">Hoops &amp; Football Fan</div>
+                      <div class="text-secondary small">I play basketball and love watching basketball and soccer highlights.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Visually Appealing Information Card -->
+          <div class="col-lg-5 reveal">
+            <div class="glass-card p-4 p-md-5 h-100 d-flex flex-column justify-content-between">
+              <div>
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                  <span class="badge bg-primary bg-opacity-25 text-info border border-info border-opacity-25 px-3 py-2 rounded-pill">
+                    <i class="bi bi-terminal me-1"></i> Davin's Profile Card
+                  </span>
+                  <i class="bi bi-stars text-info fs-4"></i>
+                </div>
+
+                <h3 class="h5 fw-bold mb-3">Quick Identity Sheet</h3>
+                <div class="info-list">
+                  <div class="info-list-item">
+                    <span class="text-secondary"><i class="bi bi-person me-2 text-info"></i>Full Name</span>
+                    <span class="fw-semibold text-end">Davindra Kumara Bayanaka</span>
+                  </div>
+                  <div class="info-list-item">
+                    <span class="text-secondary"><i class="bi bi-lightning-charge me-2 text-info"></i>Nickname</span>
+                    <span class="fw-semibold">Davin</span>
+                  </div>
+                  <div class="info-list-item">
+                    <span class="text-secondary"><i class="bi bi-chat-quote me-2 text-info"></i>Motto</span>
+                    <span class="fw-semibold">Play Creative, Think Different</span>
+                  </div>
+                  <div class="info-list-item">
+                    <span class="text-secondary"><i class="bi bi-translate me-2 text-info"></i>Languages</span>
+                    <span class="fw-semibold">Indonesian &amp; English</span>
+                  </div>
+                  <div class="info-list-item">
+                    <span class="text-secondary"><i class="bi bi-mortarboard me-2 text-info"></i>School</span>
+                    <span class="fw-semibold text-end">Sekolah Harapan Prestasi</span>
+                  </div>
+                  <div class="info-list-item">
+                    <span class="text-secondary"><i class="bi bi-envelope-check me-2 text-info"></i>School Email</span>
+                    <a href="mailto:davindra.kumara.bayanaka@harapanprestasi.sch.id" class="fw-semibold text-info text-decoration-none text-end small">davindra.kumara.bayanaka@harapanprestasi.sch.id</a>
+                  </div>
+                  <div class="info-list-item">
+                    <span class="text-secondary"><i class="bi bi-youtube me-2 text-info"></i>YouTube</span>
+                    <span class="fw-semibold">@cleardude1290</span>
+                  </div>
+                  <div class="info-list-item">
+                    <span class="text-secondary"><i class="bi bi-globe me-2 text-info"></i>Game Website</span>
+                    <a href="https://reons12.netlify.app" target="_blank" rel="noopener noreferrer" class="text-info fw-semibold text-decoration-none">reons12.netlify.app <i class="bi bi-box-arrow-up-right small"></i></a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-4 p-3 rounded-3" style="background: var(--gradient-subtle); border: 1px solid var(--border-glow);">
+                <div class="d-flex align-items-center gap-3">
+                  <i class="bi bi-rocket-takeoff fs-3 text-info"></i>
+                  <div class="small text-light">
+                    <strong>Current Quest:</strong> Creating a small website game, learning to draw, and sharpening my HTML &amp; coding skills!
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. SKILLS SECTION -->
+    <section id="skills">
+      <div class="container">
+        <div class="text-center mb-5 reveal">
+          <span class="section-tag"><i class="bi bi-layers"></i> Skills &amp; Abilities</span>
+          <h2 class="section-title">My <span class="text-gradient">Skill Set</span></h2>
+          <p class="section-subtitle mx-auto">
+            An honest snapshot of my technical, creative, soft, and language skills as I continue learning and growing.
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <!-- Technical Skills: HTML & Coding -->
+          <div class="col-md-6 col-lg-4 reveal">
+            <div class="glass-card p-4 h-100">
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                <div class="skill-icon-box"><i class="bi bi-filetype-html"></i></div>
+                <span class="skill-stage-badge">Beginner &bull; Learning</span>
+              </div>
+              <h3 class="h5 fw-bold mb-2">HTML &amp; Coding Skills</h3>
+              <p class="text-secondary small mb-3">
+                I've learned foundational HTML code skills and enjoy experimenting with building web pages and small web games.
+              </p>
+              <div class="d-flex justify-content-between small mb-1">
+                <span class="text-secondary">Technical Level</span>
+                <span class="text-info fw-semibold">Beginner (Growing!)</span>
+              </div>
+              <div class="progress-custom">
+                <div class="progress-bar-custom" style="width: 48%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Creative Skills: Drawing -->
+          <div class="col-md-6 col-lg-4 reveal">
+            <div class="glass-card p-4 h-100">
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                <div class="skill-icon-box"><i class="bi bi-brush"></i></div>
+                <span class="skill-stage-badge">Beginner &bull; Creative</span>
+              </div>
+              <h3 class="h5 fw-bold mb-2">Drawing &amp; Visual Art</h3>
+              <p class="text-secondary small mb-3">
+                I practice drawing sometimes and enjoy visual creativity, poster layouts, and sketching ideas for games.
+              </p>
+              <div class="d-flex justify-content-between small mb-1">
+                <span class="text-secondary">Creative Level</span>
+                <span class="text-info fw-semibold">Beginner</span>
+              </div>
+              <div class="progress-custom">
+                <div class="progress-bar-custom" style="width: 45%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Soft Skills: Teamwork -->
+          <div class="col-md-6 col-lg-4 reveal">
+            <div class="glass-card p-4 h-100">
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                <div class="skill-icon-box"><i class="bi bi-people"></i></div>
+                <span class="skill-stage-badge">Intermediate &bull; Soft Skill</span>
+              </div>
+              <h3 class="h5 fw-bold mb-2">Teamwork &amp; Collaboration</h3>
+              <p class="text-secondary small mb-3">
+                Working well with classmates and teammates on school projects, sports on the basketball court, and group challenges.
+              </p>
+              <div class="d-flex justify-content-between small mb-1">
+                <span class="text-secondary">Soft Skill Level</span>
+                <span class="text-info fw-semibold">Intermediate</span>
+              </div>
+              <div class="progress-custom">
+                <div class="progress-bar-custom" style="width: 75%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Languages Spoken: Indonesian & English -->
+          <div class="col-md-6 col-lg-4 reveal">
+            <div class="glass-card p-4 h-100">
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                <div class="skill-icon-box"><i class="bi bi-translate"></i></div>
+                <span class="skill-stage-badge">Intermediate &bull; Bilingual</span>
+              </div>
+              <h3 class="h5 fw-bold mb-2">Indonesian &amp; English</h3>
+              <p class="text-secondary small mb-3">
+                Communicating, reading documentation, creating content, and collaborating in both Indonesian and English.
+              </p>
+              <div class="d-flex justify-content-between small mb-1">
+                <span class="text-secondary">Language Proficiency</span>
+                <span class="text-info fw-semibold">Intermediate</span>
+              </div>
+              <div class="progress-custom">
+                <div class="progress-bar-custom" style="width: 78%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CSS, Bootstrap & Web Styling -->
+          <div class="col-md-6 col-lg-4 reveal">
+            <div class="glass-card p-4 h-100">
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                <div class="skill-icon-box"><i class="bi bi-bootstrap"></i></div>
+                <span class="skill-stage-badge">Exploring &bull; Web UI</span>
+              </div>
+              <h3 class="h5 fw-bold mb-2">CSS, Bootstrap &amp; Canva</h3>
+              <p class="text-secondary small mb-3">
+                Designing educational posters, styling modern dark-mode web pages, and customizing responsive Bootstrap layouts.
+              </p>
+              <div class="d-flex justify-content-between small mb-1">
+                <span class="text-secondary">Design Comfort</span>
+                <span class="text-info fw-semibold">Growing</span>
+              </div>
+              <div class="progress-custom">
+                <div class="progress-bar-custom" style="width: 62%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Creative Thinking & AI Game Creation -->
+          <div class="col-md-6 col-lg-4 reveal">
+            <div class="glass-card p-4 h-100">
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                <div class="skill-icon-box"><i class="bi bi-stars"></i></div>
+                <span class="skill-stage-badge">Core Strength</span>
+              </div>
+              <h3 class="h5 fw-bold mb-2">Creative Thinking &amp; AI Tools</h3>
+              <p class="text-secondary small mb-3">
+                Combining imagination with modern AI tools and JavaScript to prototype playable web games and creative digital ideas.
+              </p>
+              <div class="d-flex justify-content-between small mb-1">
+                <span class="text-secondary">Creativity Level</span>
+                <span class="text-info fw-semibold">High</span>
+              </div>
+              <div class="progress-custom">
+                <div class="progress-bar-custom" style="width: 84%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. ACHIEVEMENTS & PROJECTS SECTION -->
+    <section id="projects">
+      <div class="container">
+        <div class="text-center mb-5 reveal">
+          <span class="section-tag"><i class="bi bi-trophy"></i> Achievements &amp; Projects</span>
+          <h2 class="section-title">What I've <span class="text-gradient">Built &amp; Created</span></h2>
+          <p class="section-subtitle mx-auto">
+            Highlighting my school project, personal portfolio website, and creative website game experiments.
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <!-- Achievement 1: School Project - Islamic Educational Poster -->
+          <div class="col-md-6 col-lg-4 reveal">
+            <div class="glass-card project-card">
+              <div class="project-thumb">
+                <span class="project-category-badge">School Project</span>
+                <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Islamic Educational Poster Thumbnail">
+                  <rect width="400" height="220" fill="#080c1c"/>
+                  <circle cx="330" cy="45" r="75" fill="rgba(16,185,129,0.2)"/>
+                  <rect x="45" y="22" width="310" height="176" rx="14" fill="#0f172a" stroke="#10b981" stroke-width="1.8"/>
+                  <!-- Crescent & Star Icon -->
+                  <path d="M110 75 A24 24 0 1 0 135 112 A20 20 0 1 1 110 75 Z" fill="#34d399"/>
+                  <circle cx="132" cy="82" r="4" fill="#fbbf24"/>
+                  <rect x="165" y="68" width="155" height="14" rx="5" fill="#10b981"/>
+                  <rect x="165" y="90" width="125" height="9" rx="4" fill="#64748b"/>
+                  <rect x="75" y="128" width="115" height="46" rx="8" fill="#1e293b" stroke="rgba(52,211,153,0.4)"/>
+                  <rect x="208" y="128" width="115" height="46" rx="8" fill="#1e293b" stroke="rgba(251,191,36,0.4)"/>
+                  <text x="102" y="155" fill="#a7f3d0" font-family="sans-serif" font-size="12" font-weight="bold">QURBAN</text>
+                  <text x="238" y="155" fill="#fde68a" font-family="sans-serif" font-size="12" font-weight="bold">AQIQAH</text>
+                </svg>
+              </div>
+              <div class="p-4 d-flex flex-column flex-grow-1 justify-content-between">
+                <div>
+                  <h3 class="h5 fw-bold mb-2">Islamic Educational Poster</h3>
+                  <p class="text-secondary small mb-3">
+                    A school project poster clearly explaining the rules, meanings, and procedures of Qurban and Aqiqah.
+                  </p>
+                </div>
+                <div>
+                  <div class="d-flex flex-wrap gap-2 mb-4">
+                    <span class="tech-tag">Visual Design</span>
+                    <span class="tech-tag">Infographic</span>
+                    <span class="tech-tag">Islamic Education</span>
+                    <span class="tech-tag">School Project</span>
+                  </div>
+                  <button type="button" class="btn btn-outline-glass w-100 btn-sm py-2 view-project-btn" data-project-id="webdesign">
+                    <i class="bi bi-eye me-2"></i>View Project
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Achievement 2: Personal Project - Personal Portfolio Website -->
+          <div class="col-md-6 col-lg-4 reveal">
+            <div class="glass-card project-card">
+              <div class="project-thumb">
+                <span class="project-category-badge">Personal Project</span>
+                <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Personal Portfolio Website Thumbnail">
+                  <rect width="400" height="220" fill="#080c1c"/>
+                  <circle cx="320" cy="40" r="80" fill="rgba(139,92,246,0.22)"/>
+                  <rect x="28" y="24" width="344" height="172" rx="12" fill="#0f172a" stroke="rgba(139,92,246,0.45)" stroke-width="1.5"/>
+                  <circle cx="46" cy="40" r="4" fill="#ef4444"/>
+                  <circle cx="58" cy="40" r="4" fill="#f59e0b"/>
+                  <circle cx="70" cy="40" r="4" fill="#10b981"/>
+                  <rect x="46" y="64" width="145" height="14" rx="4" fill="#8b5cf6"/>
+                  <rect x="46" y="86" width="190" height="8" rx="4" fill="#475569"/>
+                  <rect x="46" y="102" width="160" height="8" rx="4" fill="#334155"/>
+                  <rect x="46" y="128" width="84" height="24" rx="6" fill="#3b82f6"/>
+                  <circle cx="300" cy="112" r="42" fill="rgba(6,182,212,0.18)" stroke="#06b6d4" stroke-width="2"/>
+                </svg>
+              </div>
+              <div class="p-4 d-flex flex-column flex-grow-1 justify-content-between">
+                <div>
+                  <h3 class="h5 fw-bold mb-2">Personal Portfolio Website</h3>
+                  <p class="text-secondary small mb-3">
+                    A website showcasing my identity, interests, and skills with live color-changing interactive wallpapers.
+                  </p>
+                </div>
+                <div>
+                  <div class="d-flex flex-wrap gap-2 mb-4">
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                    <span class="tech-tag">Bootstrap 5</span>
+                    <span class="tech-tag">JavaScript</span>
+                  </div>
+                  <button type="button" class="btn btn-outline-glass w-100 btn-sm py-2 view-project-btn" data-project-id="portfolio">
+                    <i class="bi bi-eye me-2"></i>View Project
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Achievement 3: Creative Project - Building a Small Website Game -->
+          <div class="col-md-6 col-lg-4 reveal">
+            <div class="glass-card project-card">
+              <div class="project-thumb">
+                <span class="project-category-badge">Creative Project</span>
+                <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Small Website Game Thumbnail">
+                  <rect width="400" height="220" fill="#080c1c"/>
+                  <circle cx="200" cy="110" r="85" fill="rgba(6,182,212,0.16)"/>
+                  <polygon points="200,32 268,70 268,150 200,188 132,150 132,70" fill="#0f172a" stroke="#06b6d4" stroke-width="2"/>
+                  <rect x="152" y="88" width="96" height="48" rx="22" fill="#1e293b" stroke="#8b5cf6" stroke-width="2.5"/>
+                  <line x1="175" y1="104" x2="175" y2="120" stroke="#22d3ee" stroke-width="3.5" stroke-linecap="round"/>
+                  <line x1="167" y1="112" x2="183" y2="112" stroke="#22d3ee" stroke-width="3.5" stroke-linecap="round"/>
+                  <circle cx="222" cy="106" r="4" fill="#8b5cf6"/>
+                  <circle cx="232" cy="114" r="4" fill="#3b82f6"/>
+                </svg>
+              </div>
+              <div class="p-4 d-flex flex-column flex-grow-1 justify-content-between">
+                <div>
+                  <h3 class="h5 fw-bold mb-2">Building a Small Website Game</h3>
+                  <p class="text-secondary small mb-3">
+                    A creative project inspired by my love for gaming and technology—including my AI-powered game site at <strong>reons12.netlify.app</strong>.
+                  </p>
+                </div>
+                <div>
+                  <div class="d-flex flex-wrap gap-2 mb-4">
+                    <span class="tech-tag">Web Game</span>
+                    <span class="tech-tag">100% AI Assisted</span>
+                    <span class="tech-tag">Interactive</span>
+                    <span class="tech-tag">Netlify</span>
+                  </div>
+                  <div class="d-flex gap-2">
+                    <button type="button" class="btn btn-outline-glass w-50 btn-sm py-2 view-project-btn" data-project-id="gaming">
+                      <i class="bi bi-eye me-1"></i>Details
+                    </button>
+                    <a href="https://reons12.netlify.app" target="_blank" rel="noopener noreferrer" class="btn btn-glow w-50 btn-sm py-2">
+                      <i class="bi bi-box-arrow-up-right me-1"></i>Launch Site
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLAYABLE MINI WEBSITE GAME SECTION -->
+    <section id="arcade">
+      <div class="container">
+        <div class="glass-card p-4 p-md-5 reveal">
+          <div class="row align-items-center gy-4">
+            <div class="col-lg-5">
+              <span class="section-tag"><i class="bi bi-joystick"></i> Interactive Mini Game</span>
+              <h2 class="h3 fw-bold mb-3">Davin's <span class="text-gradient">Cyber Hoops &amp; Star Catcher</span></h2>
+              <p class="text-secondary small mb-3">
+                One of my short-term goals and creative projects is <strong>building a small website game</strong>. Try this playable mini-game right inside my portfolio! Move the glowing paddle with your mouse, touch, or Left/Right arrow keys to catch falling basketballs &amp; cyber stars.
+              </p>
+              <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
+                <div class="px-3 py-2 rounded-3" style="background: rgba(15,23,42,0.85); border: 1px solid var(--border-glow);">
+                  <span class="text-secondary small me-2">Score:</span>
+                  <span id="gameScore" class="fw-bold text-info fs-5">0</span>
+                </div>
+                <div class="px-3 py-2 rounded-3" style="background: rgba(15,23,42,0.85); border: 1px solid var(--border-glass);">
+                  <span class="text-secondary small me-2">Best:</span>
+                  <span id="gameHighScore" class="fw-bold text-light fs-5">0</span>
+                </div>
+                <div class="px-3 py-2 rounded-3" style="background: rgba(15,23,42,0.85); border: 1px solid var(--border-glass);">
+                  <span class="text-secondary small me-2">Streak:</span>
+                  <span id="gameStreak" class="fw-bold text-warning fs-5">0x</span>
+                </div>
+                <button type="button" id="toggleMiniGameBtn" class="btn btn-glow btn-sm px-3 py-2">
+                  <i class="bi bi-play-fill me-1"></i>Start / Reset Game
+                </button>
+                <button type="button" id="toggleGameSoundBtn" class="btn btn-outline-glass btn-sm px-3 py-2">
+                  <i class="bi bi-volume-up me-1"></i>SFX: On
+                </button>
+              </div>
+              <p class="text-muted small mb-0">
+                Want to see more? Visit my external AI game website:
+                <a href="https://reons12.netlify.app" target="_blank" rel="noopener noreferrer" class="text-info fw-semibold">reons12.netlify.app</a>
+              </p>
+            </div>
+            <div class="col-lg-7">
+              <div class="d-flex justify-content-between align-items-center mb-2 px-1">
+                <span class="small text-secondary"><i class="bi bi-arrows-move me-1 text-info"></i>Move with Mouse, Touch, or Arrow Keys</span>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Game Speed">
+                  <button type="button" class="btn btn-outline-glass py-1 px-2 small game-speed-btn active" data-speed="1">Normal</button>
+                  <button type="button" class="btn btn-outline-glass py-1 px-2 small game-speed-btn" data-speed="1.45">Pro</button>
+                  <button type="button" class="btn btn-outline-glass py-1 px-2 small game-speed-btn" data-speed="1.95">Turbo</button>
+                </div>
+              </div>
+              <div class="arcade-canvas-wrap">
+                <canvas id="miniGameCanvas" width="600" height="260" aria-label="Playable Cyber Hoops Mini Game"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Neon Drawing & Sketch Studio (Inspired by Davin's Goal to Learn to Draw) -->
+          <div class="row align-items-center gy-4 mt-4 pt-4 border-top border-secondary border-opacity-25">
+            <div class="col-lg-5">
+              <span class="section-tag"><i class="bi bi-brush"></i> Creative Sketchpad</span>
+              <h3 class="h4 fw-bold mb-2">Davin's <span class="text-gradient">Neon Drawing Studio</span></h3>
+              <p class="text-secondary small mb-3">
+                One of my short-term goals is <strong>learning to draw</strong>! Use this interactive neon sketchpad to doodle a basketball, game character, or logo right on the canvas.
+              </p>
+              <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+                <button type="button" class="color-dot-btn active" style="background: #22d3ee;" data-draw-color="#22d3ee" aria-label="Cyan Brush"></button>
+                <button type="button" class="color-dot-btn" style="background: #8b5cf6;" data-draw-color="#8b5cf6" aria-label="Purple Brush"></button>
+                <button type="button" class="color-dot-btn" style="background: #f97316;" data-draw-color="#f97316" aria-label="Basketball Orange Brush"></button>
+                <button type="button" class="color-dot-btn" style="background: #10b981;" data-draw-color="#10b981" aria-label="Emerald Brush"></button>
+                <button type="button" class="color-dot-btn" style="background: #f43f5e;" data-draw-color="#f43f5e" aria-label="Crimson Brush"></button>
+                <button type="button" class="color-dot-btn" style="background: #facc15;" data-draw-color="#facc15" aria-label="Gold Brush"></button>
+              </div>
+              <div class="d-flex flex-wrap gap-2">
+                <button type="button" id="stampHoopsStencilBtn" class="btn btn-outline-glass btn-sm px-3 py-2">
+                  <i class="bi bi-dribbble me-1"></i>Stamp Basketball Art
+                </button>
+                <button type="button" id="clearSketchBtn" class="btn btn-outline-glass btn-sm px-3 py-2">
+                  <i class="bi bi-trash3 me-1"></i>Clear Canvas
+                </button>
+              </div>
+            </div>
+            <div class="col-lg-7">
+              <div class="arcade-canvas-wrap">
+                <canvas id="sketchCanvas" width="600" height="240" aria-label="Interactive Neon Drawing Pad"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. HOBBIES & INTERESTS -->
+    <section id="hobbies">
+      <div class="container">
+        <div class="text-center mb-5 reveal">
+          <span class="section-tag"><i class="bi bi-controller"></i> What I Love Doing</span>
+          <h2 class="section-title">Hobbies &amp; <span class="text-gradient">Interests</span></h2>
+          <p class="section-subtitle mx-auto">
+            From gaming and coding to playing basketball and listening to music, here is what keeps me energized.
+          </p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+          <div class="col-sm-6 col-lg-4 reveal">
+            <div class="glass-card hobby-card">
+              <div class="hobby-icon-wrap">
+                <i class="bi bi-controller"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-2">Playing &amp; Creating Games</h3>
+              <p class="text-secondary small mb-0">
+                Trying out new video games, exploring game mechanics, and building my own web game ideas.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-lg-4 reveal">
+            <div class="glass-card hobby-card">
+              <div class="hobby-icon-wrap">
+                <i class="bi bi-dribbble"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-2">Basketball &amp; Sports Videos</h3>
+              <p class="text-secondary small mb-0">
+                Playing basketball on the court and watching exciting basketball and soccer videos.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-lg-4 reveal">
+            <div class="glass-card hobby-card">
+              <div class="hobby-icon-wrap">
+                <i class="bi bi-cpu"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-2">Discovering Technology</h3>
+              <p class="text-secondary small mb-0">
+                Exploring new gadgets, AI websites, and creative tech tools that push boundaries.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-lg-4 reveal">
+            <div class="glass-card hobby-card">
+              <div class="hobby-icon-wrap">
+                <i class="bi bi-code-slash"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-2">Learning Coding</h3>
+              <p class="text-secondary small mb-0">
+                Practicing HTML and web development to build interactive sites and improve my experience.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-lg-4 reveal">
+            <div class="glass-card hobby-card">
+              <div class="hobby-icon-wrap">
+                <i class="bi bi-vector-pen"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-2">Drawing &amp; Designing</h3>
+              <p class="text-secondary small mb-0">
+                Practicing drawing skills and designing creative posters and digital layouts.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-lg-4 reveal">
+            <div class="glass-card hobby-card">
+              <div class="hobby-icon-wrap">
+                <i class="bi bi-music-note-beamed"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-2">Listening to Music</h3>
+              <p class="text-secondary small mb-0">
+                Enjoying favorite tracks that keep me focused and inspired while learning new things.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. GOALS SECTION (SHORT-TERM & LONG-TERM) -->
+    <section id="goals">
+      <div class="container">
+        <div class="text-center mb-5 reveal">
+          <span class="section-tag"><i class="bi bi-compass"></i> My Roadmap</span>
+          <h2 class="section-title">Short-Term &amp; <span class="text-gradient">Long-Term Goals</span></h2>
+          <p class="section-subtitle mx-auto">
+            The milestones I'm working toward right now and my bigger vision for the future.
+          </p>
+        </div>
+
+        <div class="row g-4 goals-timeline">
+          <!-- Short-Term Goal 1 -->
+          <div class="col-md-6 col-lg-3 reveal">
+            <div class="glass-card goal-card">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="goal-step-num">Short-Term 01</span>
+                <div class="goal-icon"><i class="bi bi-joystick"></i></div>
+              </div>
+              <h3 class="h5 fw-bold mb-2">Create a small website game</h3>
+              <p class="text-secondary small mb-0">
+                Build and polish fun browser-based mini games while improving my coding and game design skills.
+              </p>
+            </div>
+          </div>
+
+          <!-- Short-Term Goal 2 -->
+          <div class="col-md-6 col-lg-3 reveal">
+            <div class="glass-card goal-card">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="goal-step-num">Short-Term 02</span>
+                <div class="goal-icon"><i class="bi bi-pencil-square"></i></div>
+              </div>
+              <h3 class="h5 fw-bold mb-2">Learn to draw</h3>
+              <p class="text-secondary small mb-0">
+                Practice sketching and digital illustration so I can create custom artwork and characters for my projects.
+              </p>
+            </div>
+          </div>
+
+          <!-- Long-Term Goal 1 -->
+          <div class="col-md-6 col-lg-3 reveal">
+            <div class="glass-card goal-card">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="goal-step-num">Long-Term 01</span>
+                <div class="goal-icon"><i class="bi bi-mortarboard"></i></div>
+              </div>
+              <h3 class="h5 fw-bold mb-2">Get a university degree</h3>
+              <p class="text-secondary small mb-0">
+                Continue my education at university to master technology, computer science, and creative development.
+              </p>
+            </div>
+          </div>
+
+          <!-- Long-Term Goal 2 -->
+          <div class="col-md-6 col-lg-3 reveal">
+            <div class="glass-card goal-card">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="goal-step-num">Long-Term 02</span>
+                <div class="goal-icon"><i class="bi bi-briefcase"></i></div>
+              </div>
+              <h3 class="h5 fw-bold mb-2">Get a job in tech / creative industry</h3>
+              <p class="text-secondary small mb-0">
+                Turn my passion for coding, games, and technology into a rewarding career building great things.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. QUOTE SECTION -->
+    <section id="quote" class="py-5">
+      <div class="container reveal">
+        <div class="quote-box text-center">
+          <div class="mb-3">
+            <i class="bi bi-quote fs-1 text-info opacity-75"></i>
+          </div>
+          <blockquote class="blockquote mb-3">
+            <p id="quoteDisplay" class="quote-text">
+              "Life is like riding a bicycle. To keep your balance you must keep moving."
+            </p>
+          </blockquote>
+          <div id="quoteAuthor" class="text-info small text-uppercase fw-bold mb-3" style="letter-spacing: 2px;">
+            &mdash; Albert Einstein
+          </div>
+          <button type="button" id="switchQuoteBtn" class="btn btn-outline-glass btn-sm px-3 py-1">
+            <i class="bi bi-arrow-repeat me-1"></i>Switch Inspiring Quote
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. CONTACT & SOCIAL SECTION -->
+    <section id="contact">
+      <div class="container">
+        <div class="text-center mb-5 reveal">
+          <span class="section-tag"><i class="bi bi-envelope-paper"></i> Contact &amp; Social</span>
+          <h2 class="section-title">Connect With <span class="text-gradient">Davin</span></h2>
+          <p class="section-subtitle mx-auto">
+            Check out my YouTube channel, play on my AI Game Website, copy my Gmail, or send me a direct message below!
+          </p>
+        </div>
+
+        <div class="row g-4 align-items-stretch">
+          <!-- Contact & Social Links from PDF -->
+          <div class="col-lg-5 reveal">
+            <div class="glass-card p-4 p-md-5 h-100 d-flex flex-column justify-content-between">
+              <div>
+                <h3 class="h4 fw-bold mb-3">My Links &amp; Channels</h3>
+                <p class="text-secondary small mb-4">
+                  Click any card below to copy my contact info or open my website in a new tab.
+                </p>
+
+                <div class="d-flex flex-column gap-3">
+                  <!-- School Email -->
+                  <div class="contact-channel-card" role="button" tabindex="0" data-copy="davindra.kumara.bayanaka@harapanprestasi.sch.id">
+                    <div class="channel-icon"><i class="bi bi-mortarboard-fill"></i></div>
+                    <div class="flex-grow-1 overflow-hidden">
+                      <div class="small text-secondary">School Email (Click to Copy)</div>
+                      <div class="fw-semibold text-info text-truncate" title="davindra.kumara.bayanaka@harapanprestasi.sch.id">davindra.kumara.bayanaka@harapanprestasi.sch.id</div>
+                    </div>
+                    <i class="bi bi-copy text-secondary"></i>
+                  </div>
+
+                  <!-- Personal Gmail -->
+                  <div class="contact-channel-card" role="button" tabindex="0" data-copy="Cleardude1290@gmail.com">
+                    <div class="channel-icon"><i class="bi bi-envelope-at"></i></div>
+                    <div class="flex-grow-1">
+                      <div class="small text-secondary">Personal Gmail (Click to Copy)</div>
+                      <div class="fw-semibold text-light">Cleardude1290@gmail.com</div>
+                    </div>
+                    <i class="bi bi-copy text-secondary"></i>
+                  </div>
+
+                  <!-- YouTube -->
+                  <div class="contact-channel-card" role="button" tabindex="0" data-copy="cleardude1290">
+                    <div class="channel-icon"><i class="bi bi-youtube"></i></div>
+                    <div class="flex-grow-1">
+                      <div class="small text-secondary">YouTube Channel</div>
+                      <div class="fw-semibold text-light">cleardude1290</div>
+                    </div>
+                    <i class="bi bi-copy text-secondary"></i>
+                  </div>
+
+                  <!-- Game Website (with 100% AI) -->
+                  <a href="https://reons12.netlify.app" target="_blank" rel="noopener noreferrer" class="contact-channel-card">
+                    <div class="channel-icon"><i class="bi bi-controller"></i></div>
+                    <div class="flex-grow-1">
+                      <div class="small text-secondary">Game Website (with 100% AI)</div>
+                      <div class="fw-semibold text-info">https://reons12.netlify.app</div>
+                    </div>
+                    <i class="bi bi-box-arrow-up-right text-info"></i>
+                  </a>
+                </div>
+              </div>
+
+              <div id="copyFeedback" class="mt-4 small text-info fw-semibold d-none" role="status" aria-live="polite">
+                <i class="bi bi-check2-circle me-1"></i>Copied to clipboard!
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="col-lg-7 reveal">
+            <div class="glass-card p-4 p-md-5 h-100">
+              <h3 class="h4 fw-bold mb-3">Send a Message to Davin</h3>
+              <form id="contactForm" novalidate>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="senderName" class="form-label small text-secondary fw-semibold">Your Name</label>
+                    <input type="text" class="form-control form-control-dark" id="senderName" placeholder="Enter your name" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="senderEmail" class="form-label small text-secondary fw-semibold">Email Address</label>
+                    <input type="email" class="form-control form-control-dark" id="senderEmail" placeholder="name@example.com" required>
+                  </div>
+                  <div class="col-12">
+                    <label for="recipientEmailSelect" class="form-label small text-secondary fw-semibold">Send To</label>
+                    <select class="form-select form-control-dark" id="recipientEmailSelect">
+                      <option value="davindra.kumara.bayanaka@harapanprestasi.sch.id" selected>School Email — davindra.kumara.bayanaka@harapanprestasi.sch.id</option>
+                      <option value="Cleardude1290@gmail.com">Personal Gmail — Cleardude1290@gmail.com</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <label for="senderMessage" class="form-label small text-secondary fw-semibold">Message</label>
+                    <textarea class="form-control form-control-dark" id="senderMessage" rows="5" placeholder="Say hi, share a game recommendation, or talk about coding..." required></textarea>
+                  </div>
+                  <div class="col-12 mt-4">
+                    <button type="submit" class="btn btn-glow w-100 py-3">
+                      <i class="bi bi-send me-2"></i>Send Message
+                    </button>
+                  </div>
+                </div>
+                <div id="formFeedback" class="mt-3 p-3 rounded-3 d-none" role="status" aria-live="polite"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. FOOTER -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row gy-4 align-items-center justify-content-between pb-4 border-bottom border-secondary border-opacity-25">
+          <div class="col-md-4 text-center text-md-start">
+            <a class="navbar-brand mb-2" href="#hero">
+              <span class="brand-badge">DK</span>
+              <span>Davindra Kumara Bayanaka</span>
+            </a>
+            <p class="text-secondary small mb-0 mt-2">
+              Play Creative, Think Different.
+            </p>
+          </div>
+
+          <div class="col-md-5">
+            <ul class="nav justify-content-center gap-2">
+              <li class="nav-item"><a class="nav-link px-2 py-1 small" href="#hero">Home</a></li>
+              <li class="nav-item"><a class="nav-link px-2 py-1 small" href="#about">About</a></li>
+              <li class="nav-item"><a class="nav-link px-2 py-1 small" href="#skills">Skills</a></li>
+              <li class="nav-item"><a class="nav-link px-2 py-1 small" href="#projects">Achievements</a></li>
+              <li class="nav-item"><a class="nav-link px-2 py-1 small" href="#arcade">Game</a></li>
+              <li class="nav-item"><a class="nav-link px-2 py-1 small" href="#goals">Goals</a></li>
+              <li class="nav-item"><a class="nav-link px-2 py-1 small" href="#contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="col-md-3 text-center text-md-end">
+            <div class="d-inline-flex gap-2">
+              <a href="mailto:davindra.kumara.bayanaka@harapanprestasi.sch.id" class="social-btn" title="School Email: davindra.kumara.bayanaka@harapanprestasi.sch.id" aria-label="School Email"><i class="bi bi-mortarboard"></i></a>
+              <a href="mailto:Cleardude1290@gmail.com" class="social-btn" title="Personal Gmail: Cleardude1290@gmail.com" aria-label="Email Davin"><i class="bi bi-envelope"></i></a>
+              <a href="https://www.youtube.com/@cleardude1290" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Davin YouTube"><i class="bi bi-youtube"></i></a>
+              <a href="https://reons12.netlify.app" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Davin Game Website"><i class="bi bi-controller"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center pt-4">
+          <p class="text-secondary small mb-0">
+            &copy; <span id="currentYear">2026</span> <strong>Davindra Kumara Bayanaka (Davin)</strong>. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Floating Quick-Action Dock -->
+    <div class="floating-dock" aria-label="Quick Actions">
+      <button type="button" id="randomThemeDockBtn" class="dock-btn" title="Surprise Me: Switch Wallpaper Theme">
+        <i class="bi bi-palette2"></i>
+      </button>
+      <a href="#arcade" class="dock-btn text-decoration-none" title="Jump to Mini Game &amp; Sketchpad">
+        <i class="bi bi-controller"></i>
+      </a>
+      <button type="button" id="scrollTopDockBtn" class="dock-btn" title="Back to Top">
+        <i class="bi bi-arrow-up"></i>
+      </button>
+    </div>
+
+    <!-- Interactive Project Details Modal -->
+    <div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-content-dark p-2">
+          <div class="modal-header border-secondary border-opacity-25">
+            <h5 class="modal-title fw-bold" id="projectModalTitle">Project Title</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p id="projectModalDesc" class="text-secondary mb-3"></p>
+            <div class="mb-3">
+              <div class="small text-info fw-semibold mb-2">Key Highlights:</div>
+              <ul id="projectModalHighlights" class="text-secondary small mb-0 ps-3"></ul>
+            </div>
+            <div id="projectModalTags" class="d-flex flex-wrap gap-2 mt-3"></div>
+          </div>
+          <div class="modal-footer border-secondary border-opacity-25">
+            <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">Close</button>
+            <a href="#contact" class="btn btn-glow btn-sm" id="modalDiscussBtn">Connect With Me</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>    -->
+
+    <!-- Custom Portfolio JavaScript -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // 1. Dynamic Year in Footer
+        const yearSpan = document.getElementById('currentYear');
+        if (yearSpan) {
+          yearSpan.textContent = new Date().getFullYear();
+        }
+
+        // 2. Color-Changing Wallpaper Engine (Canvas + Dynamic CSS Variables)
+        const themes = {
+          nebula: {
+            bgPrimary: '#060814',
+            bgSecondary: '#0b1022',
+            purple: '#8b5cf6',
+            blue: '#3b82f6',
+            cyan: '#06b6d4',
+            particleColors: ['#8b5cf6', '#3b82f6', '#06b6d4']
+          },
+          emerald: {
+            bgPrimary: '#04100c',
+            bgSecondary: '#071d16',
+            purple: '#10b981',
+            blue: '#059669',
+            cyan: '#2dd4bf',
+            particleColors: ['#10b981', '#34d399', '#2dd4bf']
+          },
+          crimson: {
+            bgPrimary: '#120609',
+            bgSecondary: '#210b12',
+            purple: '#f43f5e',
+            blue: '#ea580c',
+            cyan: '#f59e0b',
+            particleColors: ['#f43f5e', '#fb923c', '#fbbf24']
+          },
+          synthwave: {
+            bgPrimary: '#0e0517',
+            bgSecondary: '#1c0a2e',
+            purple: '#ec4899',
+            blue: '#a855f7',
+            cyan: '#f472b6',
+            particleColors: ['#ec4899', '#c084fc', '#38bdf8']
+          },
+          ocean: {
+            bgPrimary: '#040d1a',
+            bgSecondary: '#081b33',
+            purple: '#2563eb',
+            blue: '#0284c7',
+            cyan: '#22d3ee',
+            particleColors: ['#3b82f6', '#38bdf8', '#2dd4bf']
+          },
+          gold: {
+            bgPrimary: '#120d04',
+            bgSecondary: '#1f1607',
+            purple: '#f59e0b',
+            blue: '#d97706',
+            cyan: '#fde047',
+            particleColors: ['#f59e0b', '#fbbf24', '#fef08a']
+          }
+        };
+
+        let activeThemeKey = 'nebula';
+        let rgbAngle = 0;
+
+        function hexToRgba(hex, alpha) {
+          const clean = hex.replace('#', '');
+          const r = parseInt(clean.substring(0, 2), 16);
+          const g = parseInt(clean.substring(2, 4), 16);
+          const b = parseInt(clean.substring(4, 6), 16);
+          return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')';
+        }
+
+        function applyThemePalette(t) {
+          const root = document.documentElement;
+          root.style.setProperty('--bg-primary', t.bgPrimary);
+          root.style.setProperty('--bg-secondary', t.bgSecondary);
+          root.style.setProperty('--accent-purple', t.purple);
+          root.style.setProperty('--accent-purple-glow', hexToRgba(t.purple, 0.38));
+          root.style.setProperty('--accent-blue', t.blue);
+          root.style.setProperty('--accent-blue-glow', hexToRgba(t.blue, 0.38));
+          root.style.setProperty('--accent-cyan', t.cyan);
+          root.style.setProperty('--accent-cyan-glow', hexToRgba(t.cyan, 0.32));
+          root.style.setProperty('--border-glow', hexToRgba(t.purple, 0.5));
+        }
+
+        const swatches = document.querySelectorAll('.wallpaper-swatch');
+        swatches.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            swatches.forEach(function (b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            activeThemeKey = btn.getAttribute('data-theme');
+            if (activeThemeKey !== 'rgb' && themes[activeThemeKey]) {
+              applyThemePalette(themes[activeThemeKey]);
+            }
+          });
+        });
+
+        // Custom Accent Color Picker & Wallpaper Mode Switcher
+        const customAccentPicker = document.getElementById('customAccentPicker');
+        if (customAccentPicker) {
+          customAccentPicker.addEventListener('input', function (e) {
+            const hex = e.target.value;
+            activeThemeKey = 'custom';
+            themes.custom = {
+              bgPrimary: '#060814',
+              bgSecondary: '#0b1022',
+              purple: hex,
+              blue: '#3b82f6',
+              cyan: hex,
+              particleColors: [hex, '#3b82f6', '#22d3ee']
+            };
+            applyThemePalette(themes.custom);
+          });
+        }
+
+        const wpStyles = ['Constellation', 'Cyber Grid', 'Star Warp'];
+        let wpStyleIdx = 0;
+        const wpStyleBtn = document.getElementById('wallpaperStyleBtn');
+        const wpStyleLabel = document.getElementById('wallpaperStyleLabel');
+        if (wpStyleBtn && wpStyleLabel) {
+          wpStyleBtn.addEventListener('click', function () {
+            wpStyleIdx = (wpStyleIdx + 1) % wpStyles.length;
+            wpStyleLabel.textContent = 'Mode: ' + wpStyles[wpStyleIdx];
+          });
+        }
+
+        // Animated Background Wallpaper Canvas with Mouse Interaction
+        const wpCanvas = document.getElementById('wallpaperCanvas');
+        const wpCtx = wpCanvas ? wpCanvas.getContext('2d') : null;
+        let wpParticles = [];
+        let mousePos = { x: -9999, y: -9999 };
+
+        window.addEventListener('mousemove', function (e) {
+          mousePos.x = e.clientX;
+          mousePos.y = e.clientY;
+        });
+
+        function resizeWallpaper() {
+          if (!wpCanvas) return;
+          wpCanvas.width = window.innerWidth;
+          wpCanvas.height = window.innerHeight;
+        }
+
+        function initWallpaperParticles() {
+          if (!wpCanvas) return;
+          wpParticles = [];
+          const count = Math.min(60, Math.floor(window.innerWidth / 22));
+          for (let i = 0; i < count; i++) {
+            wpParticles.push({
+              x: Math.random() * wpCanvas.width,
+              y: Math.random() * wpCanvas.height,
+              vx: (Math.random() - 0.5) * 0.7,
+              vy: (Math.random() - 0.5) * 0.7,
+              r: Math.random() * 2.5 + 1,
+              colorIndex: i % 3
+            });
+          }
+        }
+
+        function animateWallpaper() {
+          if (!wpCtx || !wpCanvas) return;
+          wpCtx.clearRect(0, 0, wpCanvas.width, wpCanvas.height);
+
+          if (activeThemeKey === 'rgb') {
+            rgbAngle = (rgbAngle + 0.6) % 360;
+            const c1 = 'hsl(' + rgbAngle + ', 85%, 60%)';
+            const c2 = 'hsl(' + ((rgbAngle + 60) % 360) + ', 85%, 55%)';
+            const c3 = 'hsl(' + ((rgbAngle + 140) % 360) + ', 85%, 55%)';
+            const root = document.documentElement;
+            root.style.setProperty('--accent-purple', c1);
+            root.style.setProperty('--accent-blue', c2);
+            root.style.setProperty('--accent-cyan', c3);
+            root.style.setProperty('--border-glow', c1);
+          }
+
+          const currentColors = (activeThemeKey === 'rgb')
+            ? [
+                'hsl(' + rgbAngle + ', 85%, 62%)',
+                'hsl(' + ((rgbAngle + 90) % 360) + ', 85%, 62%)',
+                'hsl(' + ((rgbAngle + 180) % 360) + ', 85%, 62%)'
+              ]
+            : (themes[activeThemeKey] ? themes[activeThemeKey].particleColors : themes.nebula.particleColors);
+
+          const mode = wpStyles[wpStyleIdx];
+
+          for (let i = 0; i < wpParticles.length; i++) {
+            const p = wpParticles[i];
+            if (mode === 'Star Warp') {
+              p.y -= Math.abs(p.vy) * 2.2 + 0.4;
+              p.x += p.vx * 0.4;
+            } else {
+              p.x += p.vx;
+              p.y += p.vy;
+            }
+
+            // Gentle interactive mouse repulsion
+            const mdx = p.x - mousePos.x;
+            const mdy = p.y - mousePos.y;
+            const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
+            if (mDist < 110 && mDist > 1) {
+              p.x += (mdx / mDist) * 0.8;
+              p.y += (mdy / mDist) * 0.8;
+            }
+
+            if (p.x < 0) p.x = wpCanvas.width;
+            if (p.x > wpCanvas.width) p.x = 0;
+            if (p.y < 0) p.y = wpCanvas.height;
+            if (p.y > wpCanvas.height) p.y = 0;
+
+            wpCtx.beginPath();
+            if (mode === 'Cyber Grid') {
+              wpCtx.rect(p.x - p.r, p.y - p.r, p.r * 2.2, p.r * 2.2);
+            } else {
+              wpCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            }
+            wpCtx.fillStyle = currentColors[p.colorIndex];
+            wpCtx.globalAlpha = 0.58;
+            wpCtx.fill();
+
+            if (mode !== 'Star Warp') {
+              for (let j = i + 1; j < wpParticles.length; j++) {
+                const p2 = wpParticles[j];
+                const dx = p.x - p2.x;
+                const dy = p.y - p2.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 125) {
+                  wpCtx.beginPath();
+                  wpCtx.moveTo(p.x, p.y);
+                  wpCtx.lineTo(p2.x, p2.y);
+                  wpCtx.strokeStyle = currentColors[p.colorIndex];
+                  wpCtx.globalAlpha = (1 - dist / 125) * 0.16;
+                  wpCtx.lineWidth = 1;
+                  wpCtx.stroke();
+                }
+              }
+            }
+          }
+          wpCtx.globalAlpha = 1;
+          requestAnimationFrame(animateWallpaper);
+        }
+
+        resizeWallpaper();
+        initWallpaperParticles();
+        animateWallpaper();
+        window.addEventListener('resize', function () {
+          resizeWallpaper();
+          initWallpaperParticles();
+        });
+
+        // 3. Switch Between Davin's Real Photo & Cyber Avatar
+        const toggleAvatarBtn = document.getElementById('toggleAvatarViewBtn');
+        const realPhoto = document.getElementById('davinRealPhoto');
+        const cyberAvatar = document.getElementById('davinCyberAvatar');
+        if (toggleAvatarBtn && realPhoto && cyberAvatar) {
+          toggleAvatarBtn.addEventListener('click', function () {
+            realPhoto.classList.toggle('d-none');
+            cyberAvatar.classList.toggle('d-none');
+          });
+        }
+
+        // 4. Navbar Scroll Effect & Active Link Highlight
+        const mainNav = document.getElementById('mainNav');
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('#navbarContent .nav-link');
+
+        function handleScroll() {
+          if (window.scrollY > 40) {
+            mainNav.classList.add('scrolled');
+          } else {
+            mainNav.classList.remove('scrolled');
+          }
+
+          let currentSection = 'hero';
+          sections.forEach(function (section) {
+            const sectionTop = section.offsetTop - 130;
+            if (window.scrollY >= sectionTop) {
+              currentSection = section.getAttribute('id');
+            }
+          });
+
+          navLinks.forEach(function (link) {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + currentSection) {
+              link.classList.add('active');
+            }
+          });
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        handleScroll();
+
+        // Close mobile navbar menu when clicking a link
+        const navbarCollapseEl = document.getElementById('navbarContent');
+        navLinks.forEach(function (link) {
+          link.addEventListener('click', function () {
+            if (navbarCollapseEl.classList.contains('show')) {
+              const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapseEl);
+              if (bsCollapse) {
+                bsCollapse.hide();
+              }
+            }
+          });
+        });
+
+        // 5. Scroll Reveal Animations via IntersectionObserver
+        const revealElements = document.querySelectorAll('.reveal');
+        if ('IntersectionObserver' in window) {
+          const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+              }
+            });
+          }, { threshold: 0.12 });
+
+          revealElements.forEach(function (el) {
+            observer.observe(el);
+          });
+        } else {
+          revealElements.forEach(function (el) {
+            el.classList.add('active');
+          });
+        }
+
+        // 6. Interactive Project Details Modal
+        const projectData = {
+          portfolio: {
+            title: 'Personal Portfolio Website (Personal Project)',
+            desc: 'A website showcasing my identity, interests, and skills. Designed with an interactive color-changing wallpaper system, glassmorphism cards, and a built-in mini game.',
+            highlights: [
+              'Showcases Davindra Kumara Bayanaka (Davin) — bio, fun facts, and skills',
+              '6 live color-changing animated wallpapers including RGB Auto-Cycle mode',
+              'Built with HTML5, CSS3, Bootstrap 5.0.2, and interactive JavaScript'
+            ],
+            tags: ['HTML5', 'CSS3', 'Bootstrap 5.0.2', 'JavaScript']
+          },
+          webdesign: {
+            title: 'Islamic Educational Poster (School Project)',
+            desc: 'A school project educational poster explaining the rules, significance, and step-by-step procedures of Qurban and Aqiqah in a clear, structured visual layout.',
+            highlights: [
+              'Organized key religious rules and procedures for easy student learning',
+              'Combined visual hierarchy, typography, and structured information design',
+              'Demonstrated teamwork and creative presentation skills'
+            ],
+            tags: ['School Project', 'Educational Poster', 'Qurban & Aqiqah', 'Visual Design']
+          },
+          gaming: {
+            title: 'Building a Small Website Game (Creative Project)',
+            desc: 'A creative project inspired by my passion for playing and creating games, including my AI-powered game website hosted at reons12.netlify.app and the playable Cyber Hoops mini-game on this page.',
+            highlights: [
+              'Live AI-built game website available at https://reons12.netlify.app',
+              'Includes playable Cyber Hoops & Star Catcher arcade game right in this portfolio',
+              'Directly supports my short-term goal of creating fun web games'
+            ],
+            tags: ['Web Game', '100% AI', 'reons12.netlify.app', 'JavaScript']
+          }
+        };
+
+        const projectModalEl = document.getElementById('projectModal');
+        const projectModal = projectModalEl ? new bootstrap.Modal(projectModalEl) : null;
+        const modalTitle = document.getElementById('projectModalTitle');
+        const modalDesc = document.getElementById('projectModalDesc');
+        const modalHighlights = document.getElementById('projectModalHighlights');
+        const modalTags = document.getElementById('projectModalTags');
+        const modalDiscussBtn = document.getElementById('modalDiscussBtn');
+
+        document.querySelectorAll('.view-project-btn').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            const id = btn.getAttribute('data-project-id');
+            const info = projectData[id];
+            if (!info || !projectModal) return;
+
+            modalTitle.textContent = info.title;
+            modalDesc.textContent = info.desc;
+            modalHighlights.innerHTML = info.highlights
+              .map(function (item) { return '<li class="mb-1">' + item + '</li>'; })
+              .join('');
+            modalTags.innerHTML = info.tags
+              .map(function (tag) { return '<span class="tech-tag">' + tag + '</span>'; })
+              .join('');
+
+            projectModal.show();
+          });
+        });
+
+        if (modalDiscussBtn && projectModal) {
+          modalDiscussBtn.addEventListener('click', function () {
+            projectModal.hide();
+          });
+        }
+
+        // 7. Playable Mini Game: Davin's Cyber Hoops & Star Catcher
+        const gameCanvas = document.getElementById('miniGameCanvas');
+        const gameCtx = gameCanvas ? gameCanvas.getContext('2d') : null;
+        const scoreEl = document.getElementById('gameScore');
+        const highScoreEl = document.getElementById('gameHighScore');
+        const streakEl = document.getElementById('gameStreak');
+        const toggleGameBtn = document.getElementById('toggleMiniGameBtn');
+        const toggleSoundBtn = document.getElementById('toggleGameSoundBtn');
+
+        let gameScore = 0;
+        let gameHighScore = 0;
+        let gameStreak = 0;
+        let soundEnabled = true;
+        let audioCtx = null;
+
+        function playCatchBeep(freq) {
+          if (!soundEnabled) return;
+          try {
+            const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+            if (!AudioContextClass) return;
+            if (!audioCtx) audioCtx = new AudioContextClass();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.14);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.14);
+          } catch (err) {}
+        }
+
+        if (toggleSoundBtn) {
+          toggleSoundBtn.addEventListener('click', function () {
+            soundEnabled = !soundEnabled;
+            toggleSoundBtn.innerHTML = soundEnabled
+              ? '<i class="bi bi-volume-up me-1"></i>SFX: On'
+              : '<i class="bi bi-volume-mute me-1"></i>SFX: Off';
+          });
+        }
+        let paddleX = 240;
+        const paddleW = 105;
+        const paddleH = 14;
+        let items = [];
+        let leftPressed = false;
+        let rightPressed = false;
+
+        function spawnGameItem() {
+          if (!gameCanvas) return;
+          const isHoops = Math.random() > 0.35;
+          items.push({
+            x: Math.random() * (gameCanvas.width - 36) + 18,
+            y: -15,
+            vy: Math.random() * 1.6 + 1.8,
+            radius: 12,
+            type: isHoops ? 'basketball' : 'star',
+            points: isHoops ? 10 : 25
+          });
+        }
+
+        for (let i = 0; i < 3; i++) {
+          spawnGameItem();
+        }
+
+        if (gameCanvas) {
+          gameCanvas.addEventListener('mousemove', function (e) {
+            const rect = gameCanvas.getBoundingClientRect();
+            const scaleX = gameCanvas.width / rect.width;
+            const mouseX = (e.clientX - rect.left) * scaleX;
+            paddleX = Math.max(0, Math.min(gameCanvas.width - paddleW, mouseX - paddleW / 2));
+          });
+
+          gameCanvas.addEventListener('touchmove', function (e) {
+            if (e.touches.length > 0) {
+              const rect = gameCanvas.getBoundingClientRect();
+              const scaleX = gameCanvas.width / rect.width;
+              const touchX = (e.touches[0].clientX - rect.left) * scaleX;
+              paddleX = Math.max(0, Math.min(gameCanvas.width - paddleW, touchX - paddleW / 2));
+            }
+          }, { passive: true });
+        }
+
+        window.addEventListener('keydown', function (e) {
+          if (e.key === 'ArrowLeft') leftPressed = true;
+          if (e.key === 'ArrowRight') rightPressed = true;
+        });
+
+        window.addEventListener('keyup', function (e) {
+          if (e.key === 'ArrowLeft') leftPressed = false;
+          if (e.key === 'ArrowRight') rightPressed = false;
+        });
+
+        if (toggleGameBtn) {
+          toggleGameBtn.addEventListener('click', function () {
+            gameScore = 0;
+            if (scoreEl) scoreEl.textContent = '0';
+            items = [];
+            for (let i = 0; i < 3; i++) spawnGameItem();
+          });
+        }
+
+        function updateMiniGame() {
+          if (!gameCtx || !gameCanvas) return;
+          gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+
+          if (leftPressed) paddleX = Math.max(0, paddleX - 6);
+          if (rightPressed) paddleX = Math.min(gameCanvas.width - paddleW, paddleX + 6);
+
+          // Draw subtle court lines
+          gameCtx.strokeStyle = 'rgba(148, 163, 184, 0.12)';
+          gameCtx.lineWidth = 1;
+          gameCtx.beginPath();
+          gameCtx.arc(gameCanvas.width / 2, gameCanvas.height, 70, Math.PI, 0);
+          gameCtx.stroke();
+
+          // Draw glowing paddle
+          const grad = gameCtx.createLinearGradient(paddleX, 0, paddleX + paddleW, 0);
+          grad.addColorStop(0, '#8b5cf6');
+          grad.addColorStop(1, '#06b6d4');
+          gameCtx.fillStyle = grad;
+          gameCtx.beginPath();
+          gameCtx.roundRect
+            ? gameCtx.roundRect(paddleX, gameCanvas.height - 26, paddleW, paddleH, 7)
+            : gameCtx.rect(paddleX, gameCanvas.height - 26, paddleW, paddleH);
+          gameCtx.fill();
+
+          // Update and draw falling basketballs & stars
+          for (let i = items.length - 1; i >= 0; i--) {
+            const it = items[i];
+            it.y += it.vy;
+
+            gameCtx.beginPath();
+            gameCtx.arc(it.x, it.y, it.radius, 0, Math.PI * 2);
+            gameCtx.fillStyle = it.type === 'basketball' ? '#f97316' : '#22d3ee';
+            gameCtx.fill();
+            gameCtx.strokeStyle = '#ffffff';
+            gameCtx.lineWidth = 1.5;
+            gameCtx.stroke();
+
+            // Check paddle catch
+            if (
+              it.y + it.radius >= gameCanvas.height - 26 &&
+              it.y - it.radius <= gameCanvas.height - 12 &&
+              it.x >= paddleX - 6 &&
+              it.x <= paddleX + paddleW + 6
+            ) {
+              gameStreak += 1;
+              if (streakEl) streakEl.textContent = gameStreak + 'x';
+              gameScore += it.points + Math.min(20, gameStreak * 2);
+              playCatchBeep(it.type === 'basketball' ? 520 : 740);
+              if (gameScore > gameHighScore) {
+                gameHighScore = gameScore;
+                if (highScoreEl) highScoreEl.textContent = String(gameHighScore);
+              }
+              if (scoreEl) scoreEl.textContent = String(gameScore);
+              items.splice(i, 1);
+              spawnGameItem();
+            } else if (it.y > gameCanvas.height + 20) {
+              gameStreak = 0;
+              if (streakEl) streakEl.textContent = '0x';
+              items.splice(i, 1);
+              spawnGameItem();
+            }
+          }
+
+          requestAnimationFrame(updateMiniGame);
+        }
+
+        updateMiniGame();
+
+        // 8. Inspiring Quote Switcher (Albert Einstein + Creative Quote)
+        const quotes = [
+          {
+            text: '"Life is like riding a bicycle. To keep your balance you must keep moving."',
+            author: '— Albert Einstein'
+          },
+          {
+            text: '"Play creative, Think Different."',
+            author: '— Davindra Kumara Bayanaka'
+          },
+          {
+            text: '"Great things are created by those who dare to imagine."',
+            author: '— Creative Philosophy'
+          }
+        ];
+        let quoteIdx = 0;
+        const quoteDisplay = document.getElementById('quoteDisplay');
+        const quoteAuthor = document.getElementById('quoteAuthor');
+        const switchQuoteBtn = document.getElementById('switchQuoteBtn');
+
+        if (switchQuoteBtn && quoteDisplay && quoteAuthor) {
+          switchQuoteBtn.addEventListener('click', function () {
+            quoteIdx = (quoteIdx + 1) % quotes.length;
+            quoteDisplay.textContent = quotes[quoteIdx].text;
+            quoteAuthor.textContent = quotes[quoteIdx].author;
+          });
+        }
+
+        // 9. Copy Contact Info to Clipboard
+        const copyCards = document.querySelectorAll('.contact-channel-card[data-copy]');
+        const copyFeedback = document.getElementById('copyFeedback');
+
+        function copyText(text) {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).catch(function () {
+              fallbackCopy(text);
+            });
+          } else {
+            fallbackCopy(text);
+          }
+        }
+
+        function fallbackCopy(text) {
+          const tempInput = document.createElement('textarea');
+          tempInput.value = text;
+          document.body.appendChild(tempInput);
+          tempInput.select();
+          try {
+            document.execCommand('copy');
+          } catch (err) {}
+          document.body.removeChild(tempInput);
+        }
+
+        copyCards.forEach(function (card) {
+          card.addEventListener('click', function () {
+            const value = card.getAttribute('data-copy');
+            if (!value) return;
+            copyText(value);
+            if (copyFeedback) {
+              copyFeedback.innerHTML = '<i class="bi bi-check2-circle me-1"></i>Copied "' + value + '" to clipboard!';
+              copyFeedback.classList.remove('d-none');
+              setTimeout(function () {
+                copyFeedback.classList.add('d-none');
+              }, 3000);
+            }
+          });
+        });
+
+        // 10. Contact Form Submission Handler
+        const contactForm = document.getElementById('contactForm');
+        const formFeedback = document.getElementById('formFeedback');
+
+        if (contactForm) {
+          contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const nameVal = document.getElementById('senderName').value.trim();
+            const emailVal = document.getElementById('senderEmail').value.trim();
+            const msgVal = document.getElementById('senderMessage').value.trim();
+
+            if (!nameVal || !emailVal || !msgVal) {
+              formFeedback.className = 'mt-3 p-3 rounded-3 small text-warning border border-warning border-opacity-50';
+              formFeedback.style.background = 'rgba(245, 158, 11, 0.12)';
+              formFeedback.innerHTML = '<i class="bi bi-exclamation-triangle me-2"></i>Please fill in your name, email, and message before sending.';
+              return;
+            }
+
+            formFeedback.className = 'mt-3 p-3 rounded-3 small text-info border border-info border-opacity-50';
+            formFeedback.style.background = 'rgba(6, 182, 212, 0.12)';
+            const recipientSelect = document.getElementById('recipientEmailSelect');
+            const chosenRecipient = recipientSelect ? recipientSelect.value : 'davindra.kumara.bayanaka@harapanprestasi.sch.id';
+            formFeedback.innerHTML = '<i class="bi bi-check-circle-fill me-2"></i>Awesome, <strong>' +
+              nameVal.replace(/[<>&"']/g, '') +
+              '</strong>! Your message for Davin (<strong>' + chosenRecipient + '</strong>) is ready.';
+            contactForm.reset();
+          });
+        }
+
+        // 11. Interactive Explorer XP System
+        let visitorXp = 25;
+        const xpBar = document.getElementById('visitorXpBar');
+        const xpVal = document.getElementById('visitorXpValue');
+        const lvlLabel = document.getElementById('visitorLevelLabel');
+
+        function awardXp(amount) {
+          visitorXp = Math.min(500, visitorXp + amount);
+          const level = Math.floor(visitorXp / 100) + 1;
+          const progress = visitorXp % 100;
+          const titles = [
+            'Portfolio Explorer',
+            'Creative Coder',
+            'Arcade Challenger',
+            'Tech Innovator',
+            'Grandmaster Creator',
+            'Legend of Davin'
+          ];
+          if (xpBar) xpBar.style.width = (visitorXp >= 500 ? 100 : progress) + '%';
+          if (xpVal) xpVal.textContent = visitorXp + ' XP';
+          if (lvlLabel) lvlLabel.textContent = 'LVL ' + level + ' // ' + (titles[level - 1] || 'Legend');
+        }
+
+        swatches.forEach(function (b) {
+          b.addEventListener('click', function () { awardXp(15); });
+        });
+
+        // 12. Rotating Hero Typewriter
+        const typewriterEl = document.getElementById('typewriterText');
+        const roles = [
+          'Aspiring Game Creator',
+          'Student at Sekolah Harapan Prestasi',
+          'Basketball & Soccer Fan',
+          'HTML & Web Design Explorer',
+          'Play Creative, Think Different.'
+        ];
+        let roleIdx = 0;
+        let charIdx = 0;
+        let isDeleting = false;
+
+        function tickTypewriter() {
+          if (!typewriterEl) return;
+          const currentWord = roles[roleIdx];
+          if (isDeleting) {
+            charIdx--;
+          } else {
+            charIdx++;
+          }
+          typewriterEl.textContent = currentWord.substring(0, charIdx);
+
+          let delay = isDeleting ? 35 : 70;
+          if (!isDeleting && charIdx === currentWord.length) {
+            delay = 1800;
+            isDeleting = true;
+          } else if (isDeleting && charIdx === 0) {
+            isDeleting = false;
+            roleIdx = (roleIdx + 1) % roles.length;
+            delay = 350;
+          }
+          setTimeout(tickTypewriter, delay);
+        }
+        setTimeout(tickTypewriter, 1200);
+
+        // 13. Top Scroll Progress Bar & Interactive Glass Card Spotlight
+        const scrollProgressBar = document.getElementById('scrollProgressBar');
+        window.addEventListener('scroll', function () {
+          if (!scrollProgressBar) return;
+          const scrollTop = window.scrollY;
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+          scrollProgressBar.style.width = Math.min(100, Math.max(0, pct)) + '%';
+        });
+
+        document.querySelectorAll('.glass-card').forEach(function (card) {
+          card.addEventListener('mousemove', function (e) {
+            const rect = card.getBoundingClientRect();
+            card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+            card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+          });
+        });
+
+        // 14. Game Speed Difficulty Buttons
+        let gameSpeedMultiplier = 1;
+        document.querySelectorAll('.game-speed-btn').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            document.querySelectorAll('.game-speed-btn').forEach(function (b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            gameSpeedMultiplier = parseFloat(btn.getAttribute('data-speed')) || 1;
+            items.forEach(function (it) {
+              it.vy = (Math.random() * 1.5 + 1.8) * gameSpeedMultiplier;
+            });
+            awardXp(10);
+          });
+        });
+
+        // 15. Interactive Neon Drawing & Sketchpad Studio
+        const sketchCanvas = document.getElementById('sketchCanvas');
+        const sketchCtx = sketchCanvas ? sketchCanvas.getContext('2d') : null;
+        let isDrawing = false;
+        let drawColor = '#22d3ee';
+        let lastDrawPt = { x: 0, y: 0 };
+
+        function drawNeonStencil() {
+          if (!sketchCtx || !sketchCanvas) return;
+          sketchCtx.save();
+          sketchCtx.strokeStyle = drawColor;
+          sketchCtx.shadowColor = drawColor;
+          sketchCtx.shadowBlur = 12;
+          sketchCtx.lineWidth = 3;
+          const cx = sketchCanvas.width / 2;
+          const cy = sketchCanvas.height / 2;
+          // Basketball outline + seams
+          sketchCtx.beginPath();
+          sketchCtx.arc(cx, cy, 52, 0, Math.PI * 2);
+          sketchCtx.stroke();
+          sketchCtx.beginPath();
+          sketchCtx.moveTo(cx - 52, cy);
+          sketchCtx.lineTo(cx + 52, cy);
+          sketchCtx.moveTo(cx, cy - 52);
+          sketchCtx.lineTo(cx, cy + 52);
+          sketchCtx.stroke();
+          sketchCtx.beginPath();
+          sketchCtx.arc(cx - 58, cy, 42, -0.75, 0.75);
+          sketchCtx.stroke();
+          sketchCtx.beginPath();
+          sketchCtx.arc(cx + 58, cy, 42, Math.PI - 0.75, Math.PI + 0.75);
+          sketchCtx.stroke();
+          sketchCtx.restore();
+        }
+
+        if (sketchCanvas && sketchCtx) {
+          drawNeonStencil();
+
+          function getCanvasCoords(e) {
+            const rect = sketchCanvas.getBoundingClientRect();
+            const scaleX = sketchCanvas.width / rect.width;
+            const scaleY = sketchCanvas.height / rect.height;
+            const clientX = e.touches && e.touches[0] ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches && e.touches[0] ? e.touches[0].clientY : e.clientY;
+            return {
+              x: (clientX - rect.left) * scaleX,
+              y: (clientY - rect.top) * scaleY
+            };
+          }
+
+          function startDraw(e) {
+            isDrawing = true;
+            lastDrawPt = getCanvasCoords(e);
+            awardXp(5);
+          }
+
+          function moveDraw(e) {
+            if (!isDrawing) return;
+            if (e.cancelable) e.preventDefault();
+            const pt = getCanvasCoords(e);
+            sketchCtx.save();
+            sketchCtx.strokeStyle = drawColor;
+            sketchCtx.shadowColor = drawColor;
+            sketchCtx.shadowBlur = 10;
+            sketchCtx.lineWidth = 3.5;
+            sketchCtx.lineCap = 'round';
+            sketchCtx.beginPath();
+            sketchCtx.moveTo(lastDrawPt.x, lastDrawPt.y);
+            sketchCtx.lineTo(pt.x, pt.y);
+            sketchCtx.stroke();
+            sketchCtx.restore();
+            lastDrawPt = pt;
+          }
+
+          function stopDraw() {
+            isDrawing = false;
+          }
+
+          sketchCanvas.addEventListener('mousedown', startDraw);
+          sketchCanvas.addEventListener('mousemove', moveDraw);
+          window.addEventListener('mouseup', stopDraw);
+          sketchCanvas.addEventListener('touchstart', startDraw, { passive: true });
+          sketchCanvas.addEventListener('touchmove', moveDraw, { passive: false });
+          window.addEventListener('touchend', stopDraw);
+        }
+
+        document.querySelectorAll('.color-dot-btn').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            document.querySelectorAll('.color-dot-btn').forEach(function (b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            drawColor = btn.getAttribute('data-draw-color') || '#22d3ee';
+          });
+        });
+
+        const stampBtn = document.getElementById('stampHoopsStencilBtn');
+        if (stampBtn) {
+          stampBtn.addEventListener('click', function () {
+            drawNeonStencil();
+            awardXp(10);
+          });
+        }
+
+        const clearSketchBtn = document.getElementById('clearSketchBtn');
+        if (clearSketchBtn && sketchCtx && sketchCanvas) {
+          clearSketchBtn.addEventListener('click', function () {
+            sketchCtx.clearRect(0, 0, sketchCanvas.width, sketchCanvas.height);
+          });
+        }
+
+        // 16. Floating Quick-Action Dock Handlers
+        const randomThemeDockBtn = document.getElementById('randomThemeDockBtn');
+        if (randomThemeDockBtn) {
+          randomThemeDockBtn.addEventListener('click', function () {
+            const swatchArr = Array.from(swatches);
+            const currentIdx = swatchArr.findIndex(function (s) { return s.classList.contains('active'); });
+            const nextSwatch = swatchArr[(currentIdx + 1) % swatchArr.length];
+            if (nextSwatch) nextSwatch.click();
+          });
+        }
+
+        const scrollTopDockBtn = document.getElementById('scrollTopDockBtn');
+        if (scrollTopDockBtn) {
+          scrollTopDockBtn.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+        }
+      });
+    </script>
+  </body></html>
